@@ -6,11 +6,11 @@ import java.nio.file.Paths;
 
 public class Board {
 	
-	
-	private Location[][] Board;
-	public Board(Location[][] theboard, int x, int y) {
-		Board = new Location[x][y];
-		this.Board = theboard;
+	private Location[][]Board;
+	public Board(int x, int y) {
+		Location[][]thisboard = new Location[x][y];
+		Board = thisboard;
+		
 	}
 
 	public Location[][] getBoard() {
