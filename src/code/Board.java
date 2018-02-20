@@ -1,7 +1,7 @@
 package code;
 
 public class Board {
-	private Location[][]Board;
+	private Location[][]Board = new Location[5][5];
 	
 	public Board(Location[][] theboard) {
 		this.Board = theboard;
