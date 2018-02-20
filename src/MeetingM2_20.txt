@@ -16,7 +16,7 @@ Goals for the next meeting [20+ minutes]
 	Half the group will be working on the Junit test and the other half will be starting the code.
 
 Schedule for the next week's set of pair programming meetings [3-4 minutes]
-	Tuesdays 12:30-2:30
+	Tuesdays 12:30-2:30(Josh/Terence && John/Motaz/richard)
 	Wednesday 12:30 - 2:30
 	Thursday 2-4
 	Friday 12:30 - 2:30
