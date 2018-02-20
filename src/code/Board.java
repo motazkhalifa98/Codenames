@@ -15,5 +15,7 @@ public class Board {
 		Board = board;
 	}
 	
+	
+	
 
 }
