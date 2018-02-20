@@ -9,12 +9,18 @@ import org.junit.Test;
 
 public class testing
 {
-	public void locations()
+	@Test
+	public void Testlocations()
 	{
 		Board test = new Board();
 		double[][] newBoard = test.getBoard();
 		assertEquals(5, newBoard.length);
 		assertEquals(5, newBoard[0].length);
+	}
+	@Test
+	public void TestReadCodenames() {
+		Board test=new Board();
+		
 	}
 	
 }
