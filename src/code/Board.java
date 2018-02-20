@@ -1,8 +1,18 @@
 package code;
 
 public class Board {
-	public Board(int[][] theboard) {
-		theboard = new int[5][5];
+	private Location[][]Board;
+	
+	public Board(Location[][] theboard) {
+		this.Board = theboard;
+	}
+
+	public Location[][] getBoard() {
+		return Board;
+	}
+
+	public void setBoard(Location[][] board) {
+		Board = board;
 	}
 	
 
