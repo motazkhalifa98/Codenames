@@ -20,7 +20,7 @@ public class testing
 	@Test
 	public void TestReadCodenames() {
 		Board test=new Board();
-		
+		test.setCodeNames(GameWords.txt)
 	}
 	
 }
