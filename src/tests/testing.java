@@ -97,5 +97,31 @@ public class testing
 			
 		}
 	}
+	@Test
+	public void testAssignments() {
+		int red=0;
+		int blue=0;
+		int inn=0;
+		int ass=0;
+		Board test=new Board(5,5);
+		Location[][] testing=test.getBoard();
+		test.setCodeNames("src/GameWords.txt");
+		for(int row=0; row<5; row++)
+			for(int col=0; col<5; col++) {
+				Person one=testing[row][col];
+				if(one.getAssignment==RedAgent)
+					red++;
+				else if(one.getAssignment==BlueAgent)
+					blue++;
+				else if(one.getAssignment==Innocent)
+					inn++;
+				else if(one.getAssignment==Assassin)
+					ass++;
+			}
+		assertTrue(red==9);
+		assertTrue(blue==8);
+		assertTrue(inn==7);
+		assertTrue(ass==1);
+	}
 	
 }
