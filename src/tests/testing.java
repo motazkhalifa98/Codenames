@@ -109,13 +109,13 @@ public class testing
 		for(int row=0; row<5; row++)
 			for(int col=0; col<5; col++) {
 				Person one=testing[row][col];
-				if(one.getAssignment==RedAgent)
+				if(one.getPersonType==RedAgent)
 					red++;
-				else if(one.getAssignment==BlueAgent)
+				else if(one.getPersonType==BlueAgent)
 					blue++;
-				else if(one.getAssignment==Innocent)
+				else if(one.getPersonType==Innocent)
 					inn++;
-				else if(one.getAssignment==Assassin)
+				else if(one.getPersonType==Assassin)
 					ass++;
 			}
 		assertTrue(red==9);
