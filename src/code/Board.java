@@ -38,7 +38,7 @@ public class Board {
 			e.printStackTrace();
 		}
 		Collections.shuffle(fullCodenames);
-		for(int name=0; name<fullCodenames.size(); name++) {
+		for(int name=0; name<25; name++) {
 			codenames.add(fullCodenames.get(name));
 		}
 		
