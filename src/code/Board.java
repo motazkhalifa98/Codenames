@@ -25,8 +25,6 @@ public class Board {
 	public void setBoard(Location[][] board) {
 		this.board = board;
 	}
-	public static void main(String[] args){
-    }
 
 	public void setCodeNames(String filename) {
 		try {
