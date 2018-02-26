@@ -1,0 +1,20 @@
+Meeting Minutes for _add meeting date  2/20:
+
+Meeting Attendance: (list all students who were present) [1 minute]
+	Terence,Jonathan(M),Josh,Moataz,Rich
+
+
+
+Tasks completed since last meeting [1-2 minutes]
+
+	  First few JUNIT tests and code to pass them
+
+Tasks worked upon but not completed since last meeting [2-4 minutes]
+        Have still not completed fifth junit test
+
+Goals for the next meeting [20+ minutes]
+	Half the group will be working on the Junit test and the other half will be starting the code.
+
+Schedule for the next week's set of pair programming meetings [3-4 minutes]
+	Tuesdays 12:30-2:30(Josh/Terence && John/Motaz/richard)
+	Wednesday 12:30 - 2:30(Josh/Motaz)
