@@ -4,13 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class Location extends Board {
+public class Location {
 	
 	private ArrayList<Person> persons = new ArrayList<Person>();
-
-	public Location(int x, int y) {
-		super(x, y);
-	}
 
 	public void makeList() {
 		for (int i=0; i <9; i++) {
