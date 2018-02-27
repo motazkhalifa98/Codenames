@@ -14,7 +14,7 @@ public class Location extends Board {
 
 	public void makeList() {
 		for (int i=0; i <9; i++) {
-			RedAgent red = new RedAgent("A"+i, red, 0);
+			RedAgent red = new RedAgent("A"+i, this, 0);
 			persons.add(red);
 		}
 		for (int x=0; x< 8; x++) {
