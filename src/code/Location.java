@@ -18,14 +18,14 @@ public class Location extends Board {
 			persons.add(red);
 		}
 		for (int x=0; x< 8; x++) {
-			BlueAgent blue = new BlueAgent();
+			BlueAgent blue = new BlueAgent("B"+x, this, 0);
 			persons.add(blue);
 		}
 		for (int y=0; y< 7; y++) {
-			InnocentBystander innocent = new InnocentBystander();
+			InnocentBystander innocent = new InnocentBystander("I"+y, this, 0);
 			persons.add(innocent);
 		}
-		Assassin assassin = new Assassin();
+		Assassin assassin = new Assassin("G", this, 0);
 		persons.add(assassin);
 		Collections.shuffle(persons);
 		Location[][] bleh = new Location[5][5];
