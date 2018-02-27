@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class Location {
+public class Location extends Board{
 	
+	public Location(int x, int y) {
+		super(x, y);
+		// TODO Auto-generated constructor stub
+	}
+
 	private ArrayList<Person> persons = new ArrayList<Person>();
 
 	public void makeList() {
@@ -31,5 +36,6 @@ public class Location {
 				bleh[i][k] = persons.get((i*5) + k);
 			}
 		}
+		setBoard(bleh);
 	}
 }
