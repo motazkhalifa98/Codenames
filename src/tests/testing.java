@@ -124,4 +124,20 @@ public class testing
 		assertTrue(ass==1);
 	}
 	
+	@Test
+	public void testLocationFilled()
+	{
+		Board test = new Board(5,5);
+		Location[][] testLocation = test.getBoard();
+		test.setCodeNames("src/GameWords.txt");
+		test.startgame();
+		assertTrue("It's the red turns Move", "RedTurn", test.getMove());
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for(int j = 0; j < testLocation[0].length; j++)
+			{
+				assertTrue(testLocation[i][j] != null);
+			}
+		}
+	}
 }
