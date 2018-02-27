@@ -77,4 +77,8 @@ public class Board {
 	
 	
 	}
+	public void main(String[] args) {
+		board = new Location[5][5];
+		makeList();
+	}
 }
