@@ -30,8 +30,9 @@ public class Location extends Board {
 		Collections.shuffle(persons);
 		Location[][] bleh = new Location[5][5];
 		for (int i = 0; i < 5; i++) {
-			for (int z = 0; z < bleh[i].length; z++) {
-			// want to loop inside it and set every person's codename to a codename from the arraylist of perosns
+			for (int k = 0; k < bleh[i].length; k++) {
+				// want to loop inside it and set every person's codename to a codename from the arraylist of perosns
+				bleh[i][k] = persons.get((i*5) + k);
 			}
 		}
 	}
