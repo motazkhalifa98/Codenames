@@ -6,8 +6,5 @@ public class Assassin extends Person {
 		super(personType);
 		// TODO Auto-generated constructor stub
 	}
-
-
-	// TODO Auto-generated constructor stub
 }
 
