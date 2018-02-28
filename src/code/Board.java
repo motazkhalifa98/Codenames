@@ -154,7 +154,7 @@ public class Board {
 	public void checkGameState(int row, int col) {
 		//check what thing was revealed 
 		//decide what happens
-		if (board[row][col].getPersonType() == ) {
+		if (board[row][col].getPersonType().equals("Assassin")) {
 
 		}
 	}
