@@ -19,7 +19,7 @@ public class Location {
 	public Object getPersonType() {
 		return PersonType;
 	}
-	public void setPersonType(Object personType) {
+	public void setPersonType(Person personType) {
 		PersonType = personType;
 	}
 	public int getReveal() {
