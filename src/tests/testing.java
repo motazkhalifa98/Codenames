@@ -145,4 +145,21 @@ public class testing
 			}
 		}
 	}
+	
+	@Test
+	public void legalClue()
+	{
+		Board test = new Board(5,5);
+		Location[][] testLocation = test.getBoard();
+		test.setCodeNames("src/GameWords.txt");
+		test.startgame();
+		String clue = test.getClue();
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for(int j = 0; j < testLocation[0].length; i++)
+			{
+				assertEquals("The clue and the codename cannot be the same", testLocation[i][j].getCodeName().equals(clue), test.legalClue());
+			}
+		}
+	}
 }
