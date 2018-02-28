@@ -2,11 +2,11 @@ package code;
 
 public class Location {
 	String CodeName;
-	Object PersonType;
+	
 	int Reveal;
-	public Location(String codeName, Object personType, int reveal) {
+	public Location(String codeName, int reveal) {
 		CodeName = codeName;
-		PersonType = personType;
+		
 		Reveal = reveal;
 			
 	}
@@ -16,12 +16,8 @@ public class Location {
 	public void setCodeName(String codeName) {
 		CodeName = codeName;
 	}
-	public Object getPersonType() {
-		return PersonType;
-	}
-	public void setPersonType(Object personType) {
-		PersonType = personType;
-	}
+	
+	
 	public int getReveal() {
 		return Reveal;
 	}
