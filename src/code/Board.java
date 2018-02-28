@@ -53,7 +53,7 @@ public class Board {
 		return codenames;
 	}
 	private ArrayList<Person> persons = new ArrayList<Person>();
-
+//j
 	public void makeList() {
 		int j = 0;
 		
