@@ -179,6 +179,6 @@ public class testing
 				}
 			}
 		}
-		assertEquals("this game is over!", true, test.getWinningState());
+		assertEquals("this game is over.", true, test.getWinningState());
 	}
 }
