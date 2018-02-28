@@ -133,6 +133,7 @@ public class Board {
 			//reveal the location
 			if (currentPlayer.equals("Red")) {
 				board[row][col].setReveal(1);
+				
 			}
 			else if(currentPlayer.equals("Blue")) {
 				board[row][col].setReveal(1);
@@ -142,6 +143,11 @@ public class Board {
 			}
 		}
 		
+	}
+	public void checkGameState(int rol, int col) {
+		if (board[row][col].getPersonType() == ) {
+			
+		}
 	}
 	public void win() {
 		
