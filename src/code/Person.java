@@ -1,14 +1,14 @@
 package code;
 
 public class Person {
-	Object PersonType;
-	public Person(Object personType) {
+	String PersonType;
+	public Person(String personType) {
 		PersonType = personType;	
 	}
-	public void setPersonType(Object personType) {
+	public void setPersonType(String personType) {
 		PersonType = personType;
 	}
-	public Object getPersonType() {
+	public String getPersonType() {
 		return PersonType;
 	}
 }
