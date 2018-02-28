@@ -50,27 +50,27 @@ public class Board {
 	public List<String> getGameCodeNames(){
 		return codenames;
 	}
-	private ArrayList<Location> persons = new ArrayList<Location>();
+	private ArrayList<Person> persons = new ArrayList<Person>();
 
 	public void makeList() {
 		int j = 0;
 		
 		for (int i=0; i <9; i++) {
-			RedAgent red = new RedAgent(codenames.get(i), this, 0);
+			RedAgent red = new RedAgent(codenames.get(i));
 			j = i;
 			persons.add(red);
 		}
 		for (int x=0; x< 8; x++) {
-			BlueAgent blue = new BlueAgent(codenames.get(x+j), this, 0);
+			BlueAgent blue = new BlueAgent(codenames.get(x+j));
 			j = x+j;
 			persons.add(blue);
 		}
 		for (int y=0; y< 7; y++) {
-			InnocentBystander innocent = new InnocentBystander(codenames.get(y+j), this, 0);
+			InnocentBystander innocent = new InnocentBystander(codenames.get(y+j));
 			j = j+y;
 			persons.add(innocent);
 		}
-		Assassin assassin = new Assassin("G", this, 0);
+		Assassin assassin = new Assassin("G");
 		persons.add(assassin);
 		Collections.shuffle(persons);
 		Location[][] bleh = new Location[5][5];
