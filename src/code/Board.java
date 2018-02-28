@@ -96,7 +96,7 @@ public class Board {
 
 		setBoard(bleh);
 
-
+//j
 }
 	public String getClue() {
 		return CLUE;
