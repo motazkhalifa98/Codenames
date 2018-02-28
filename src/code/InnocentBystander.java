@@ -2,8 +2,8 @@ package code;
 
 public class InnocentBystander extends Person {
 
-	public InnocentBystander(Object personType) {
-		super(personType);
+	public InnocentBystander() {
+		super("InnocentBystander");
 		// TODO Auto-generated constructor stub
 	}
 }

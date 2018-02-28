@@ -100,7 +100,7 @@ public class Board {
 	public String getCurrentPlayer() {
 		return currentPlayer;
 	}
-	public void legalClue(String clue) {
+	public void legalClue() {
 		a:
 		for (int i=0; i<board.length; i++) {
 			for(int k=0; k<board[0].length; k++) {
