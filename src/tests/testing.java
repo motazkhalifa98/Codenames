@@ -141,7 +141,7 @@ public class testing
 				assertTrue(testLocation[i][j].getCodeName()!=null);
 				assertFalse(testLocation[i][j].getCodeName().equals(""));	
 				assertEquals("Person is not revealed",false,testLocation[i][j].getReveal());
-				assertNotEquals("Person exists",null,testLocation[i][j].getPersonType());
+				assertNotEquals("Person exists",null,testLocation[i][j].getPerson().getPersonType());
 			}
 		}
 	}
