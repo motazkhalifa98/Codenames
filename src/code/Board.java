@@ -6,13 +6,14 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import code.Person;
 
 public class Board {
-	
+
 	private String CLUE = "this is a clue";
-	
+
 	private String currentPlayer = "Red";
-	
+
 	private Location[][] board;
 	private List<String> fullCodenames=new ArrayList<String>();
 	private List<String> codenames=new ArrayList<String>();
@@ -21,7 +22,7 @@ public class Board {
 	public Board(int x, int y) {
 		Location[][] thisboard = new Location[x][y];
 		this.board = thisboard;
-		
+
 	}
 
 	public Location[][] getBoard() {
@@ -36,7 +37,7 @@ public class Board {
 		try {
 			for(String line : Files.readAllLines(Paths.get(filename))){
 				fullCodenames.add(line);
-}
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,7 +46,7 @@ public class Board {
 		for(int name=0; name<25; name++) {
 			codenames.add(fullCodenames.get(name));
 		}
-		
+
 	}
 	public List<String> getAllCodeNames(){
 		return fullCodenames;
@@ -54,10 +55,10 @@ public class Board {
 		return codenames;
 	}
 	private ArrayList<Person> persons = new ArrayList<Person>();
-//j
+	//j
 	public void makeList() {
 		int j = 0;
-		
+
 		for (int i=0; i <9; i++) {
 			RedAgent red = new RedAgent(codenames.get(i));
 			j = i;
@@ -81,13 +82,13 @@ public class Board {
 			for (int k = 0; k < bleh[i].length; k++) {
 				// want to loop inside it and set every person's codename to a codename from the arraylist of perosns
 				bleh[i][k] = persons.get((i*5) + k);
-			
+
 			}
 		}
 		setBoard(bleh);
-	
-	
-	
+
+
+
 	}
 	public String getClue() {
 		return CLUE;
@@ -103,22 +104,22 @@ public class Board {
 	}
 	public void legalClue() {
 		a:
-		for (int i=0; i<board.length; i++) {
-			for(int k=0; k<board[0].length; k++) {
-				if (CLUE.equals(board[i][k].getCodeName()) && board[i][k].Reveal == 0) {
-					//forfet turn
-					if (getCurrentPlayer().equals("Red")) {
-						setCurrentPlayer("Blue");
+			for (int i=0; i<board.length; i++) {
+				for(int k=0; k<board[0].length; k++) {
+					if (CLUE.equals(board[i][k].getCodeName()) && board[i][k].Reveal == 0) {
+						//forfet turn
+						if (getCurrentPlayer().equals("Red")) {
+							setCurrentPlayer("Blue");
+						}
+						else {
+							setCurrentPlayer("RED");
+						}
+						System.out.println("turn has been forfeted, it is " + getCurrentPlayer() + "'s turn");
+						break a;
 					}
-					else {
-						setCurrentPlayer("RED");
-					}
-					System.out.println("turn has been forfeted, it is " + getCurrentPlayer() + "'s turn");
-					break a;
 				}
 			}
-		}
-		System.out.println(getCurrentPlayer() + " this is your clue: " + CLUE);
+	System.out.println(getCurrentPlayer() + " this is your clue: " + CLUE);
 	}
 	public void makeMove(int row, int col) {
 		if (board[row][col].Reveal == 0) {
@@ -128,7 +129,7 @@ public class Board {
 			//reveal the location
 			if (currentPlayer.equals("Red")) {
 				board[row][col].setReveal(1);
-				
+
 			}
 			else if(currentPlayer.equals("Blue")) {
 				board[row][col].setReveal(1);
@@ -137,23 +138,30 @@ public class Board {
 				System.out.println("code error somewhere in makeMove()");
 			}
 		}
-		
+
 	}
 	public void checkGameState(int rol, int col) {
 		//check what thing was revealed 
 		//decide what happens
 		if (board[row][col].getPersonType() == ) {
-			
+
 		}
 	}
-	public void win() {
-		
-	}
+
 	public void main(String[] args) {
 		board = new Location[5][5];
 		makeList();
 	}
-	public void AssassinFound() {
-		
+	public void AssassinFound(Person x) {
+		if(x.getPersonType() == "Assassin") {
+			assassinFound = true;
+		}
+	}
+	public void win() {
+
+
+
+
+
 	}
 }
