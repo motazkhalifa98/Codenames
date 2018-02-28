@@ -181,4 +181,30 @@ public class testing
 		}
 		assertEquals("this game is over.", true, test.getWinningState());
 	}
+	
+	@Test
+	public void updateBoardState()
+	{
+		Board test = new Board(5,5);
+		Location[][] testLocation = test.getBoard();
+		test.setCodeNames("src/GameWords.txt");
+		test.startgame();
+		test.setCurrentPlayer("Red");
+		int count = test.getCount(); int row = 0; int column = 0;
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for(int j = 0; j < testLocation[i].length; j++)
+			{
+				if(testLocation[i][j].getPersonType() == "RedAgent")
+				{
+					row = i;
+					column = j;
+				}
+			}
+		}
+		test.makeMove(row, col);
+		assertEquals("count didn't decrease", count - 1, test.getCount());
+		assertEquals("Location does not contain current teams Agent.", "Red", test.getCurrentPlayer());
+		assertEquals("The Player is not revealed", 1, testLocation[row][column].getReveal());
+	}
 }
