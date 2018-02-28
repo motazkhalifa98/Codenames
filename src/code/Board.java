@@ -13,6 +13,8 @@ public class Board {
 	private String CLUE = "this is a clue";
 
 	private String currentPlayer = "Red";
+	private String winningTeam = "";
+	private String losingTeam = "";
 
 	private Location[][] board;
 	private List<String> fullCodenames=new ArrayList<String>();
@@ -156,8 +158,14 @@ public class Board {
 
 		}
 	}
-	public void win() {
-
+	public Boolean win() {
+		if(assassinFound) {
+			winningState = true;
+		}
+		else if() {
+			
+		}
+		return winningState;
 	}
 	public void main(String[] args) {
 		board = new Location[5][5];
@@ -166,6 +174,8 @@ public class Board {
 	public void AssassinFound(Person x) {
 		if(x.getPersonType() == "Assassin") {
 			assassinFound = true;
+			= getCurrentPLayer()
+			
 		}
 	}
 
