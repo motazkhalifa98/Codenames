@@ -17,6 +17,7 @@ public class Board {
 	private List<String> fullCodenames=new ArrayList<String>();
 	private List<String> codenames=new ArrayList<String>();
 	private boolean winningState;
+	private boolean assassinFound;
 	public Board(int x, int y) {
 		Location[][] thisboard = new Location[x][y];
 		this.board = thisboard;
@@ -108,7 +109,7 @@ public class Board {
 	public String getCurrentPlayer() {
 		return currentPlayer;
 	}
-	public void legalClue(String clue) {
+	public void legalClue() {
 		a:
 			for (int i=0; i<board.length; i++) {
 				for(int k=0; k<board[0].length; k++) {
@@ -147,6 +148,8 @@ public class Board {
 
 	}
 	public void checkGameState(int rol, int col) {
+		//check what thing was revealed 
+		//decide what happens
 		if (board[row][col].getPersonType() == ) {
 
 		}
@@ -157,5 +160,8 @@ public class Board {
 	public void main(String[] args) {
 		board = new Location[5][5];
 		makeList();
+	}
+	public void AssassinFound() {
+		
 	}
 }
