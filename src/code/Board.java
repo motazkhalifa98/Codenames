@@ -55,6 +55,7 @@ public class Board {
 	}
 	private ArrayList<Person> persons = new ArrayList<Person>();
 	//j
+	//j
 	public void makeList() {
 		int j = 0;
 
