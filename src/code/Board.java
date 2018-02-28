@@ -76,18 +76,19 @@ public class Board {
 		persons.add(assassin);
 		Collections.shuffle(persons);
 		Location[][] bleh = new Location[5][5];
-		for (int g =0; g < 25; g++) {
-		for (int m = 0; m < 25; m++) {
+		
 		for (int i = 0; i < 5; i++) {
 			for (int k = 0; k < bleh[i].length; k++) {
 				// want to loop inside it and set every person's codename to a codename from the arraylist of perosns
+				for (int m = 0; m < 25; m++) {
 				bleh[i][k].setCodeName(codenames.get(m));
+				}
+				for (int g =0; g < 25; g++) {
 				bleh[i][k].setPersonType(persons.get(g));
-			
 			}
 		}
 		}
-		}
+		
 		setBoard(bleh);
 	
 	
