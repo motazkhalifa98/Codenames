@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import code.Person;
 
 public class Board {
 
@@ -54,8 +55,6 @@ public class Board {
 		return codenames;
 	}
 	private ArrayList<Person> persons = new ArrayList<Person>();
-	//j
-	//j
 	public void makeList() {
 		int j = 0;
 
@@ -97,7 +96,8 @@ public class Board {
 
 		setBoard(bleh);
 
-	}
+
+}
 	public String getClue() {
 		return CLUE;
 	}
@@ -130,7 +130,7 @@ public class Board {
 	System.out.println(getCurrentPlayer() + " this is your clue: " + CLUE);
 	}
 	public void makeMove(int row, int col) {
-		if (board[row][col].Reveal == 0) {
+		if (board[row][col].Reveal == 1) {
 			System.out.println("invalid move: unit is revealed");
 		}
 		else {
@@ -138,9 +138,11 @@ public class Board {
 			if (currentPlayer.equals("Red")) {
 				board[row][col].setReveal(1);
 
+				//checkGameState()
 			}
 			else if(currentPlayer.equals("Blue")) {
 				board[row][col].setReveal(1);
+				//checkGameState()
 			}
 			else {
 				System.out.println("code error somewhere in makeMove()");
@@ -148,7 +150,7 @@ public class Board {
 		}
 
 	}
-	public void checkGameState(int rol, int col) {
+	public void checkGameState(int row, int col) {
 		//check what thing was revealed 
 		//decide what happens
 		if (board[row][col].getPersonType() == ) {
@@ -162,7 +164,10 @@ public class Board {
 		board = new Location[5][5];
 		makeList();
 	}
-	public void AssassinFound() {
-		
+	public void AssassinFound(Person x) {
+		if(x.getPersonType() == "Assassin") {
+			assassinFound = true;
+		}
 	}
+
 }
