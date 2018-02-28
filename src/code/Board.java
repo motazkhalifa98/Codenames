@@ -11,6 +11,8 @@ public class Board {
 	
 	private String CLUE = "this is a clue";
 	
+	private String currentPlayer = "Red";
+	
 	private Location[][] board;
 	private List<String> fullCodenames=new ArrayList<String>();
 	private List<String> codenames=new ArrayList<String>();
@@ -92,18 +94,30 @@ public class Board {
 	public void setClue(String setClue) {
 		CLUE = setClue;
 	}
+	public void setCurrentPlayer(String player) {
+		currentPlayer = player;
+	}
+	public String getCurrentPlayer() {
+		return currentPlayer;
+	}
 	public void checkLeagalClue(String clue) {
 		a:
 		for (int i=0; i<board.length; i++) {
 			for(int k=0; k<board[0].length; k++) {
 				if (CLUE.equals(board[i][k].getCodeName()) && board[i][k].Reveal == 0) {
 					//forfet turn
-					System.out.println("turn has been forfeted");
+					if (getCurrentPlayer().equals("Red")) {
+						setCurrentPlayer("Blue");
+					}
+					else {
+						setCurrentPlayer("RED");
+					}
+					System.out.println("turn has been forfeted, it is " + getCurrentPlayer() + "'s turn");
 					break a;
 				}
 			}
 		}
-		System.out.println("this is your clue: " + CLUE);
+		System.out.println(getCurrentPlayer() + " this is your clue: " + CLUE);
 	}
 	public void win() {
 		
