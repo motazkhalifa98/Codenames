@@ -162,5 +162,23 @@ public class testing
 
 	}
 	
-
+	@Test
+	public void winningState()
+	{
+		Board test = new Board(5,5);
+		Location[][] testLocation = test.getBoard();
+		test.setCodeNames("src/GameWords.txt");
+		test.startgame();
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for (int j = 0; j < testLocation[i].length; j++)
+			{
+				if(testLocation[i][j].getPersonType() == "Assassin")
+				{
+					testLocation[i][j].setReveal(1);
+				}
+			}
+		}
+		assertEquals("this game is over!", true, test.getWinningState());
+	}
 }
