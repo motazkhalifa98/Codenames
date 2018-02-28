@@ -154,12 +154,13 @@ public class testing
 		test.setCodeNames("src/GameWords.txt");
 		test.startgame();
 		String clue = test.getClue();
-		for(int i = 0; i < testLocation.length; i++)
-		{
-			for(int j = 0; j < testLocation[0].length; i++)
-			{
-				assertEquals("The clue and the codename cannot be the same", testLocation[i][j].getCodeName().equals(clue), test.legalClue());
-			}
-		}
+		test.setClue("family");
+		assertEquals("The clue and the codename cannot be the same", false, test.legalClue());
+		test.setClue("adsfagsd");
+		assertEquals("This clue should work.", true, test.legalClue());
+		
+
 	}
+	
+
 }
