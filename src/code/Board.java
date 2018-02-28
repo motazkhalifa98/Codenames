@@ -124,6 +124,24 @@ public class Board {
 		}
 		System.out.println(getCurrentPlayer() + " this is your clue: " + CLUE);
 	}
+	public void makeMove(int row, int col) {
+		if (board[row][col].Reveal == 0) {
+			System.out.println("invalid move: unit is revealed");
+		}
+		else {
+			//reveal the location
+			if (currentPlayer.equals("Red")) {
+				board[row][col].setReveal(1);
+			}
+			else if(currentPlayer.equals("Blue")) {
+				board[row][col].setReveal(1);
+			}
+			else {
+				System.out.println("code error somewhere in makeMove()");
+			}
+		}
+		
+	}
 	public void win() {
 		
 	}
