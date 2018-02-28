@@ -122,17 +122,18 @@ public class Board {
 	System.out.println(getCurrentPlayer() + " this is your clue: " + CLUE);
 	}
 	public void makeMove(int row, int col) {
-		if (board[row][col].Reveal == 0) {
+		if (board[row][col].Reveal == 1) {
 			System.out.println("invalid move: unit is revealed");
 		}
 		else {
 			//reveal the location
 			if (currentPlayer.equals("Red")) {
 				board[row][col].setReveal(1);
-
+				//checkGameState()
 			}
 			else if(currentPlayer.equals("Blue")) {
 				board[row][col].setReveal(1);
+				//checkGameState()
 			}
 			else {
 				System.out.println("code error somewhere in makeMove()");
@@ -140,7 +141,7 @@ public class Board {
 		}
 
 	}
-	public void checkGameState(int rol, int col) {
+	public void checkGameState(int row, int col) {
 		//check what thing was revealed 
 		//decide what happens
 		if (board[row][col].getPersonType() == ) {
