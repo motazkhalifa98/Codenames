@@ -17,6 +17,7 @@ public class Board {
 	private List<String> fullCodenames=new ArrayList<String>();
 	private List<String> codenames=new ArrayList<String>();
 	private boolean winningState;
+	private boolean assassinFound;
 	public Board(int x, int y) {
 		Location[][] thisboard = new Location[x][y];
 		this.board = thisboard;
@@ -151,5 +152,8 @@ public class Board {
 	public void main(String[] args) {
 		board = new Location[5][5];
 		makeList();
+	}
+	public void AssassinFound() {
+		
 	}
 }
