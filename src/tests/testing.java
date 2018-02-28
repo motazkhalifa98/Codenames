@@ -2,6 +2,7 @@ package tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
@@ -131,12 +132,16 @@ public class testing
 		Location[][] testLocation = test.getBoard();
 		test.setCodeNames("src/GameWords.txt");
 		test.startgame();
-		assertTrue("It's the red turns Move", "RedTurn", test.getMove());
+		assertEquals("Red team goes first","Red", test.getTurn);
 		for(int i = 0; i < testLocation.length; i++)
 		{
 			for(int j = 0; j < testLocation[0].length; j++)
 			{
 				assertTrue(testLocation[i][j] != null);
+				assertTrue(testLocation[i][j].getCodeName()!=null);
+				assertFalse(testLocation[i][j].getCodeName().equals(""));	
+				assertEquals("Person is not revealed",false,testLocation[i][j].getReveal());
+				assertNotEquals("Person exists",null,testLocation[i][j].getPersonType());
 			}
 		}
 	}
