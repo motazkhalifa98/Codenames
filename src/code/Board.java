@@ -139,6 +139,8 @@ public class Board {
 		
 	}
 	public void checkGameState(int rol, int col) {
+		//check what thing was revealed 
+		//decide what happens
 		if (board[row][col].getPersonType() == ) {
 			
 		}
