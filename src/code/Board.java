@@ -78,27 +78,25 @@ public class Board {
 		persons.add(assassin);
 		Collections.shuffle(persons);
 		Location[][] bleh = new Location[5][5];
-
-		for (int i =0; i <5; i++) {
+		
+		int tests = 0;
+		for (int i =0; i <bleh.length; i++) {
 			for (int k =0; k < bleh[i].length; k++) {
-				for (Person type : persons) {
-					bleh[i][k].setPersonType(type);
-				}
+					bleh[i][k].setPersonType(persons.get(tests));
+					tests++;
 			}
 		}
-
+		int testCount = 0;
 		for (int i =0; i <5; i++) {
-			for (int k =0; k < bleh[i].length; k++) {
-				for (String code : codenames) {
-					bleh[i][k].setCodeName(code);
-				}
+			for (int k =0; k < bleh[i].length; k++) 
+				bleh[i][k].setCodeName(codenames.get(testCount));
+				testCount++;
 			}
-		}
-
 		setBoard(bleh);
+		}
 
 //j
-}
+
 	public String getClue() {
 		return CLUE;
 	}
