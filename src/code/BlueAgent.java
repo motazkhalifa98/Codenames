@@ -1,10 +1,11 @@
 package code;
 
-public class BlueAgent extends Location {
+public class BlueAgent extends Person {
 
-	public BlueAgent(String codeName, Person personType, int reveal) {
-		super(codeName, personType, reveal);
+	public BlueAgent(Object personType) {
+		super(personType);
 		// TODO Auto-generated constructor stub
 	}
 
 }
+

@@ -1,10 +1,13 @@
 package code;
 
-public class Assassin extends Location {
+public class Assassin extends Person {
 
-	public Assassin(String codeName, Person personType, int reveal) {
-		super(codeName, personType, reveal);
+	public Assassin(Object personType) {
+		super(personType);
 		// TODO Auto-generated constructor stub
 	}
-	
+
+
+	// TODO Auto-generated constructor stub
 }
+

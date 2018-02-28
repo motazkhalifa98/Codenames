@@ -1,10 +1,9 @@
 package code;
 
-public class InnocentBystander extends Location {
+public class InnocentBystander extends Person {
 
-	public InnocentBystander(String codeName, Person personType, int reveal) {
-		super(codeName, personType, reveal);
+	public InnocentBystander(Object personType) {
+		super(personType);
 		// TODO Auto-generated constructor stub
 	}
-
 }
