@@ -152,6 +152,13 @@ public class Board {
 
 		}
 	}
+	public void checkWhoseRevealed() {
+		for (int i =0; i <board.length; i++) {
+			for (int k =0; k < board[i].length; k++) {
+				
+			}
+			}
+	}
 	public Boolean win() {
 		if(assassinFound) {
 			winningState = true;
