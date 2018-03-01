@@ -15,9 +15,19 @@ import org.junit.Test;
 import code.Board;
 import code.Location;
 import code.Person;
-
+/**
+ * This class contains 9 junit tests that cover every aspect of the grading rubric for phase 1
+ * 
+ * 
+ *
+ */
 public class testing
 {
+	/**
+	 * This method ensures that the Board created has the correct
+	 * number of Location instances
+	 * 
+	 */
 	@Test
 	public void Test25Locations()
 	{
@@ -27,6 +37,10 @@ public class testing
 		assertEquals("board size",5, newBoard.length);
 		assertEquals("board size",5, newBoard[0].length);
 	}
+	/**
+	 * This method tests the programs ability to read a file containing codenames
+	 * and put them in a List
+	 */
 	@Test
 	public void TestReadCodenameFile() {
 		Board test=new Board(5,5);
@@ -87,6 +101,10 @@ public class testing
 			assertTrue("codename files match", testList.contains(response.get(word)));
 		}
 	}
+	/**
+	 * This method tests the programs ability to select 25 codenames at random and store them in
+	 * a list to be used in the game
+	 */
 	@Test
 	public void test25uniqueCodenames() {
 		Board test=new Board(5,5);
@@ -99,6 +117,10 @@ public class testing
 			
 		}
 	}
+	/**
+	 * This method tests that there are randomly generated assignments for
+	 * 9 red, 8 blue, 7 innocent, and 1 assassin
+	 */
 	@Test
 	public void testAssignments() {
 		int red=0;
@@ -126,7 +148,11 @@ public class testing
 		assertTrue(inn==7);
 		assertTrue(ass==1);
 	}
-	
+	/**
+	 * This method ensures that Red goes first
+	 * Every Location has a codename and Person
+	 * Nothing is revealed
+	 */
 	@Test
 	public void testLocationFilled()
 	{
@@ -140,12 +166,16 @@ public class testing
 			for(int j = 0; j < testLocation[0].length; j++)
 			{
 				assertFalse(testLocation[i][j].getCodeName().equals(""));
+				assertFalse(testLocation[i][j].getCodeName()==(null));
 				assertEquals("Person is not revealed",0,testLocation[i][j].getReveal());
 				assertNotEquals("Person exists",null,((Person)testLocation[i][j].getPersonType()).getPersonType());
 			}
 		}
 	}
-	
+	/**
+	 * This makes sure there is a method that returns if a clue is legal or not
+	 * Clues cant equal a current codename unless it was already revealed
+	 */
 	@Test
 	public void legalClue()
 	{
@@ -153,10 +183,18 @@ public class testing
 		test2.setCodeNames("src/GameWords.txt");
 		test2.startGame();
 		List<String> r = test2.getAllCodeNames();
-		test2.setClue(r.get(0));
-		assertEquals("The clue and the codename cannot be the same", true, test2.legalClue());
+		test2.checkWhoseRevealed();
+		for(int loc=0; loc<test2.getBoard().length; loc++)
+			for(int loca=0; loca<test2.getBoard()[0].length; loca++)
+			if(test2.getBoard()[loc][loca].getReveal()==1) {
+				test2.setClue(test2.getBoard()[loc][loca].getCodeName());
+				assertEquals("clue is legal b/c person is revealed",false,test2.legalClue());
+			}else if(test2.getBoard()[loc][loca].getReveal()==0) {
+				test2.setClue(test2.getBoard()[loc][loca].getCodeName());
+				assertEquals("clue is illegal b/c person is not revealed",true,test2.legalClue());
+			}
 		test2.setClue("adsfagsd");
-		assertEquals("This clue should work.", false, test2.legalClue());
+		assertEquals("Legal clue", false, test2.legalClue());
 		
 
 	}
