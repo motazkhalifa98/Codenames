@@ -21,6 +21,8 @@ public class Board {
 	private List<String> codenames=new ArrayList<String>();
 	private boolean winningState;
 	private boolean assassinFound;
+	private int redAgentsFound;
+	private int blueAgentsFound;
 	private ArrayList<Person> persons = new ArrayList<Person>();
 	public Board(int x, int y) {
 		Location[][] thisboard = new Location[x][y];
@@ -155,7 +157,12 @@ public class Board {
 	public void checkWhoseRevealed() {
 		for (int i =0; i <board.length; i++) {
 			for (int k =0; k < board[i].length; k++) {
-				
+				if(board[i][k].getPersonType()=="RedAgent" && board[i][k].Reveal == 1) {
+					redAgentsFound += 1;
+				}
+				else if(board[i][k].getPersonType()=="BlueAgent" && board[i][k].Reveal == 1) {
+					blueAgentsFound += 1;
+				}
 			}
 			}
 	}
@@ -163,7 +170,11 @@ public class Board {
 		if(assassinFound) {
 			winningState = true;
 		}
-		else if() {
+		else if(redAgentsFound == 9) {
+			
+			
+		}
+		else if(blueAgentsFound == 8) {
 			
 		}
 		return winningState;
