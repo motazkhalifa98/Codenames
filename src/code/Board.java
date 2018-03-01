@@ -58,7 +58,7 @@ public class Board {
 	 */
 	private ArrayList<Person> persons = new ArrayList<Person>();
 	/**
-	 * Board constructor creates a Loacation Matrix using paramters given
+	 * Board constructor creates a Location Matrix using paramters given
 	 * @param x the number of rows
 	 * @param y the number of columns
 	 */
@@ -133,21 +133,17 @@ public class Board {
 	 * Creates all persons, shuffles them, puts them in a matrix, and sends it to the board
 	 */
 	public void makeList() {
-		int j = 0;
 
 		for (int i=0; i <9; i++) {
 			RedAgent red = new RedAgent();
-			j = i;
 			persons.add(red);
 		}
 		for (int x=0; x< 8; x++) {
 			BlueAgent blue = new BlueAgent();
-			j = x+j;
 			persons.add(blue);
 		}
 		for (int y=0; y< 7; y++) {
 			InnocentBystander innocent = new InnocentBystander();
-			j = j+y;
 			persons.add(innocent);
 		}
 		Assassin assassin = new Assassin();
@@ -259,11 +255,11 @@ public class Board {
 		}
 		else if(redAgentsFound == 9) {
 			winningState = true;
-			winningTeam = "Blue";
+			winningTeam = "Red";
 		}
 		else if(blueAgentsFound == 8) {
 			winningState = true;
-			winningTeam = "Red";
+			winningTeam = "Blue";
 		}
 	}
 	/**
