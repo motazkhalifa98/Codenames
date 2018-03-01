@@ -25,7 +25,7 @@ public class Person {
 	}
 	/**
 	 * Getter for this person's type
-	 * @return Current perosn type
+	 * @return Current person type
 	 */
 	public String getPersonType() {
 		return PersonType;
