@@ -112,24 +112,16 @@ public class Board {
 	public String getCurrentPlayer() {
 		return currentPlayer;
 	}
-	public void legalClue() {
-		a:
-			for (int i=0; i<board.length; i++) {
-				for(int k=0; k<board[0].length; k++) {
-					if (CLUE.equals(board[i][k].getCodeName()) && board[i][k].Reveal == 0) {
-						//forfet turn
-						if (getCurrentPlayer().equals("Red")) {
-							setCurrentPlayer("Blue");
-						}
-						else {
-							setCurrentPlayer("RED");
-						}
-						System.out.println("turn has been forfeted, it is " + getCurrentPlayer() + "'s turn");
-						break a;
-					}
+	public boolean legalClue() {
+		for (int i=0; i<board.length; i++) {
+			for(int k=0; k<board[0].length; k++) {
+				if (CLUE.equals(board[i][k].getCodeName()) && board[i][k].Reveal == 0) {
+					//forfet turn
+					return true;
 				}
 			}
-	System.out.println(getCurrentPlayer() + " this is your clue: " + CLUE);
+		}
+		return false;
 	}
 	public void makeMove(int row, int col) {
 		if (board[row][col].Reveal == 1) {
@@ -139,7 +131,9 @@ public class Board {
 			//reveal the location
 			if (currentPlayer.equals("Red")) {
 				board[row][col].setReveal(1);
-
+				if (board[row][col].getPersonType().equals("RedAgent")) {
+					count--;
+				}
 				//checkGameState()
 			}
 			else if(currentPlayer.equals("Blue")) {
