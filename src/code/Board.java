@@ -13,8 +13,7 @@ public class Board {
 	private String CLUE = "this is a clue";
 
 	private String currentPlayer = "Red";
-	private String winningTeam = "";
-	private String losingTeam;
+	private String winningTeam = "no winner";
 
 	private int count = 10;
 
@@ -35,7 +34,9 @@ public class Board {
 	public Location[][] getBoard() {
 		return board;
 	}
-
+	public String getWinningTeam() {
+		return winningTeam;
+	}
 	public int getCount()
 	{
 		return count;
@@ -120,7 +121,7 @@ public class Board {
 		for (int i=0; i<board.length; i++) {
 			for(int k=0; k<board[0].length; k++) {
 				if (CLUE.equals(board[i][k].getCodeName()) && board[i][k].getReveal() == 0) {
-					//forfet turn
+					//forfeit turn
 					return true;
 				}
 			}
@@ -135,24 +136,16 @@ public class Board {
 				if (((Person)board[row][col].getPersonType()).getPersonType().equals("RedAgent")) {
 					count--;
 				}
-				//checkGameState()
 			}
 			else if(currentPlayer.equals("Blue")) {
 				board[row][col].setReveal(1);
-				//checkGameState()
 			}
 			else {
 				System.out.println("code error somewhere in makeMove()");
 		}
 
 	}
-	//public void checkGameState(int row, int col) {
-	//check what thing was revealed 
-	//decide what happens
-	//f (board[row][col].getPersonType().equals("Assassin")) {
-
-	//}
-	//}
+	
 	public void checkWhoseRevealed() {
 		for (int i =0; i <board.length; i++) {
 			for (int k =0; k < board[i].length; k++) {
@@ -170,14 +163,15 @@ public class Board {
 	public void gameState() {
 		if(assassinFound) {
 			winningState = true;
+			
 		}
 		else if(redAgentsFound == 9) {
 			winningState = true;
-			winningTeam = "red";
+			winningTeam = "Blue";
 		}
 		else if(blueAgentsFound == 8) {
 			winningState = true;
-			winningTeam = "red";
+			winningTeam = "Red";
 		}
 	}
 	
@@ -202,10 +196,10 @@ public class Board {
 			for(int k=0; k<board[0].length; k++) {
 				if (((Person)board[i][k].getPersonType()).getPersonType()== "Assassin" && board[i][k].getReveal() == 1) {
 					assassinFound = true;
-					if (currentPlayer == "red") {
-						losingTeam = "red";
+					if (currentPlayer == "Red") {
+						winningTeam = "Blue";
 					} else {
-						losingTeam= "blue";
+						winningTeam= "Red";
 					}
 				}
 			}

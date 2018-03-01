@@ -273,6 +273,12 @@ public class testing
 		test.gameState();
 		assertEquals("Board is in winning state", true, test.getWinningState());
 	}
+	/**
+	 * This tests that there is a method which:
+	 * decrements the count,
+	 * updates a Location when codename selected,
+	 * returns if Location contained current teams agent,
+	 */
 	@Test
 	public void updateBoardState()
 	{
@@ -295,11 +301,13 @@ public class testing
 		}
 		test.makeMove(row, column);
 		test.checkWhoseRevealed();
-		assertEquals("count didn't decrease", count - 1, test.getCount());
+		assertEquals("count decremented", count - 1, test.getCount());
 		assertEquals("Location does not contain current teams Agent.", "Red", test.getCurrentPlayer());
 		assertEquals("The Player is not revealed", 1, testLocation[row][column].getReveal());
 	}
-	
+	/**
+	 * Tests that there is a method that returns the winning team when the assassin is revealed
+	 */
 	@Test
 	public void whichTeamFound()
 	{
@@ -321,6 +329,6 @@ public class testing
 		test.setBoard(testLocation);
 		test.AssassinFound();
 		test.gameState();
-		assertEquals("This is the losing team", "Red", test.getCurrentPlayer());
+		assertEquals("This is the winning team", "Blue", test.getWinningTeam());
 	}
 }
