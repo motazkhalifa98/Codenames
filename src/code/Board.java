@@ -191,12 +191,21 @@ public class Board {
 		count = x;
 	}
 	
-	public void AssassinFound(Person x) {
+	public String AssassinFound(Person x) {
 		if(x.getPersonType() == "Assassin") {
 			assassinFound = true;
 			losingTeam = getCurrentPlayer();
-			
+			if(losingTeam == "Red") {
+				return "Blue";
+			}
+			else 
+				//(losingTeam == "Blue") 
+				{
+				return "red";
+			}
 		}
+		return "No Assassin has been found";
 	}
+	
 
 }
