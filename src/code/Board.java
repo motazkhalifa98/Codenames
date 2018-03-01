@@ -16,6 +16,8 @@ public class Board {
 	private String winningTeam = "";
 	private String losingTeam = "";
 
+	private int count;
+	
 	private Location[][] board;
 	private List<String> fullCodenames=new ArrayList<String>();
 	private List<String> codenames=new ArrayList<String>();
@@ -170,6 +172,10 @@ public class Board {
 	
 	public void startGame() {
 		makeList();
+	}
+	
+	public void setCount(int x) {
+		count = x;
 	}
 	
 	public void AssassinFound(Person x) {
