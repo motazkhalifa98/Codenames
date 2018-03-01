@@ -17,7 +17,7 @@ public class Board {
 	private String losingTeam = "";
 
 	private int count;
-	
+
 	private Location[][] board;
 	private List<String> fullCodenames=new ArrayList<String>();
 	private List<String> codenames=new ArrayList<String>();
@@ -61,7 +61,7 @@ public class Board {
 	public List<String> getGameCodeNames(){
 		return codenames;
 	}
-	
+
 	public void makeList() {
 		int j = 0;
 
@@ -84,21 +84,21 @@ public class Board {
 		persons.add(assassin);
 		Collections.shuffle(persons);
 		Location[][] bleh = new Location[5][5];
-		
+
 		int tests = 0;
 		int testCount = 0;
 		for (int i =0; i <bleh.length; i++) {
 			for (int k =0; k < bleh[i].length; k++) {
-					Location newLoc= new Location(codenames.get(testCount),persons.get(tests),0);
-					bleh[i][k] = newLoc;
-					tests++;
-					testCount++;
+				Location newLoc= new Location(codenames.get(testCount),persons.get(tests),0);
+				bleh[i][k] = newLoc;
+				tests++;
+				testCount++;
 			}
 		}
 		setBoard(bleh);
-		}
+	}
 
-//j
+	//j
 
 	public String getClue() {
 		return CLUE;
@@ -147,11 +147,11 @@ public class Board {
 
 	}
 	//public void checkGameState(int row, int col) {
-		//check what thing was revealed 
-		//decide what happens
-		//f (board[row][col].getPersonType().equals("Assassin")) {
+	//check what thing was revealed 
+	//decide what happens
+	//f (board[row][col].getPersonType().equals("Assassin")) {
 
-		//}
+	//}
 	//}
 	public void checkWhoseRevealed() {
 		for (int i =0; i <board.length; i++) {
@@ -163,7 +163,7 @@ public class Board {
 					blueAgentsFound += 1;
 				}
 			}
-			}
+		}
 	}
 	public boolean gameState() {
 		if(assassinFound) {
@@ -182,30 +182,27 @@ public class Board {
 	public void main(String[] args) {
 		startGame();
 	}
-	
+
 	public void startGame() {
 		makeList();
 	}
-	
+
 	public void setCount(int x) {
 		count = x;
 	}
-	
-	public String AssassinFound(Person x) {
-		if(x.getPersonType() == "Assassin") {
-			assassinFound = true;
-			losingTeam = getCurrentPlayer();
-			if(losingTeam == "Red") {
-				return "Blue";
-			}
-			else 
-				//(losingTeam == "Blue") 
-				{
-				return "red";
+
+	public void AssassinFound() {
+		for (int i=0; i<board.length; i++) {
+			for(int k=0; k<board[0].length; k++) {
+				if (board[i][k].getPersonType()== "Assassin" && board[i][k].getReveal() == 1) {
+					assassinFound = true;
+					if (currentPlayer == "red") {
+						losingTeam = "blue";
+					} else {
+						losingTeam= "red";
+					}
+				}
 			}
 		}
-		return "No Assassin has been found";
 	}
-	
-
 }
