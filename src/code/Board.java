@@ -16,7 +16,7 @@ public class Board {
 	private String winningTeam = "";
 	private String losingTeam = "";
 
-	private int count;
+	private int count = 10;
 
 	private Location[][] board;
 	private List<String> fullCodenames=new ArrayList<String>();
@@ -36,6 +36,10 @@ public class Board {
 		return board;
 	}
 
+	public int getCount()
+	{
+		return count;
+	}
 	public void setBoard(Location[][] board) {
 		this.board = board;
 	}
@@ -124,14 +128,11 @@ public class Board {
 		return false;
 	}
 	public void makeMove(int row, int col) {
-		if (board[row][col].Reveal == 1) {
-			System.out.println("invalid move: unit is revealed");
-		}
-		else {
+		board[row][col].setReveal(1); 
 			//reveal the location
 			if (currentPlayer.equals("Red")) {
 				board[row][col].setReveal(1);
-				if (board[row][col].getPersonType().equals("RedAgent")) {
+				if (((Person)board[row][col].getPersonType()).getPersonType().equals("RedAgent")) {
 					count--;
 				}
 				//checkGameState()
@@ -142,7 +143,6 @@ public class Board {
 			}
 			else {
 				System.out.println("code error somewhere in makeMove()");
-			}
 		}
 
 	}
@@ -158,14 +158,16 @@ public class Board {
 			for (int k =0; k < board[i].length; k++) {
 				if(board[i][k].getPersonType()=="RedAgent" && board[i][k].Reveal == 1) {
 					redAgentsFound += 1;
+					count--;
 				}
 				else if(board[i][k].getPersonType()=="BlueAgent" && board[i][k].Reveal == 1) {
 					blueAgentsFound += 1;
+					count--;
 				}
 			}
 		}
 	}
-	public boolean gameState() {
+	public void gameState() {
 		if(assassinFound) {
 			winningState = true;
 		}
@@ -177,6 +179,10 @@ public class Board {
 			winningState = true;
 			winningTeam = getCurrentPlayer();
 		}
+	}
+	
+	public boolean getWinningState()
+	{
 		return winningState;
 	}
 	public void main(String[] args) {
@@ -194,7 +200,7 @@ public class Board {
 	public void AssassinFound() {
 		for (int i=0; i<board.length; i++) {
 			for(int k=0; k<board[0].length; k++) {
-				if (board[i][k].getPersonType()== "Assassin" && board[i][k].getReveal() == 1) {
+				if (((Person)board[i][k].getPersonType()).getPersonType()== "Assassin" && board[i][k].getReveal() == 1) {
 					assassinFound = true;
 					if (currentPlayer == "red") {
 						losingTeam = "blue";
