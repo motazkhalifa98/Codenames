@@ -169,9 +169,14 @@ public class Board {
 		return winningState;
 	}
 	public void main(String[] args) {
+		startGame();
+	}
+	
+	public void startGame() {
 		board = new Location[5][5];
 		makeList();
 	}
+	
 	public void AssassinFound(Person x) {
 		if(x.getPersonType() == "Assassin") {
 			assassinFound = true;
