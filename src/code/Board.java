@@ -81,11 +81,14 @@ public class Board {
 		Collections.shuffle(persons);
 		Location[][] bleh = new Location[5][5];
 		
-		int tests = 0;int testCount = 0;
+		int tests = 0;
+		int testCount = 0;
 		for (int i =0; i <bleh.length; i++) {
 			for (int k =0; k < bleh[i].length; k++) {
 					Location newLoc= new Location(codenames.get(testCount),persons.get(tests),0);
-					bleh[i][j] = newLoc;
+					bleh[i][k] = newLoc;
+					tests++;
+					testCount++;
 			}
 		}
 		setBoard(bleh);
@@ -166,7 +169,6 @@ public class Board {
 	}
 	
 	public void startGame() {
-		board = new Location[5][5];
 		makeList();
 	}
 	

@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import code.Board;
 import code.Location;
+import code.Person;
 
 public class testing
 {
@@ -105,18 +106,19 @@ public class testing
 		int inn=0;
 		int ass=0;
 		Board test=new Board(5,5);
-		Location[][] testing=test.getBoard();
 		test.setCodeNames("src/GameWords.txt");
+		test.startGame();
+		Location[][] testing=test.getBoard();
 		for(int row=0; row<5; row++)
 			for(int col=0; col<5; col++) {
-				Person one = testing[row][col];
-				if(one.getPersonType==RedAgent)
+				Location one = testing[row][col];
+				if(((Person)one.getPersonType()).getPersonType() == "RedAgent")
 					red++;
-				else if(one.getPersonType==BlueAgent)
+				else if(((Person) one.getPersonType()).getPersonType()=="BlueAgent")
 					blue++;
-				else if(one.getPersonType==Innocent)
+				else if(((Person) one.getPersonType()).getPersonType()=="InnocentBystander")
 					inn++;
-				else if(one.getPersonType==Assassin)
+				else if(((Person) one.getPersonType()).getPersonType()=="Assassin")
 					ass++;
 			}
 		assertTrue(red==9);
@@ -131,7 +133,7 @@ public class testing
 		Board test = new Board(5,5);
 		Location[][] testLocation = test.getBoard();
 		test.setCodeNames("src/GameWords.txt");
-		test.startgame();
+		test.startGame();
 		assertEquals("Red team goes first","Red", test.getTurn);
 		for(int i = 0; i < testLocation.length; i++)
 		{
@@ -152,7 +154,7 @@ public class testing
 		Board test = new Board(5,5);
 		Location[][] testLocation = test.getBoard();
 		test.setCodeNames("src/GameWords.txt");
-		test.startgame();
+		test.startGame();
 		String clue = test.getClue();
 		test.setClue("family");
 		assertEquals("The clue and the codename cannot be the same", false, test.legalClue());
@@ -168,7 +170,7 @@ public class testing
 		Board test = new Board(5,5);
 		Location[][] testLocation = test.getBoard();
 		test.setCodeNames("src/GameWords.txt");
-		test.startgame();
+		test.startGame();
 		for(int i = 0; i < testLocation.length; i++)
 		{
 			for (int j = 0; j < testLocation[i].length; j++)
@@ -188,7 +190,7 @@ public class testing
 		Board test = new Board(5,5);
 		Location[][] testLocation = test.getBoard();
 		test.setCodeNames("src/GameWords.txt");
-		test.startgame();
+		test.startGame();
 		test.setCurrentPlayer("Red");
 		int count = test.getCount(); int row = 0; int column = 0;
 		for(int i = 0; i < testLocation.length; i++)
