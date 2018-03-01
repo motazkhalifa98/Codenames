@@ -165,16 +165,17 @@ public class Board {
 			}
 			}
 	}
-	public Boolean win() {
+	public boolean win() {
 		if(assassinFound) {
 			winningState = true;
 		}
 		else if(redAgentsFound == 9) {
-			
-			
+			winningState = true;
+			winningTeam = getCurrentPlayer();
 		}
 		else if(blueAgentsFound == 8) {
-			//comment
+			winningState = true;
+			winningTeam = getCurrentPlayer();
 		}
 		return winningState;
 	}
