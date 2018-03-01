@@ -174,7 +174,7 @@ public class Board {
 	public void AssassinFound(Person x) {
 		if(x.getPersonType() == "Assassin") {
 			assassinFound = true;
-			= getCurrentPLayer()
+			losingTeam = getCurrentPlayer();
 			
 		}
 	}
