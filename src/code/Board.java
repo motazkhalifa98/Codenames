@@ -115,7 +115,7 @@ public class Board {
 	public boolean legalClue() {
 		for (int i=0; i<board.length; i++) {
 			for(int k=0; k<board[0].length; k++) {
-				if (CLUE.equals(board[i][k].getCodeName()) && board[i][k].Reveal == 0) {
+				if (CLUE.equals(board[i][k].getCodeName()) && board[i][k].getReveal() == 0) {
 					//forfet turn
 					return true;
 				}
