@@ -210,4 +210,28 @@ public class testing
 		assertEquals("Location does not contain current teams Agent.", "Red", test.getCurrentPlayer());
 		assertEquals("The Player is not revealed", 1, testLocation[row][column].getReveal());
 	}
+	
+	@Test
+	public void whichTeamFound()
+	{
+		Board test = new Board(5,5);
+		test.setCodeNames("src/GameWords.txt");
+		test.startGame();
+		test.setCurrentPlayer("Red");
+		Location[][] testLocation = test.getBoard();
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for (int j = 0; j < testLocation[i].length; j++)
+			{
+				if(((Person)testLocation[i][j].getPersonType()).getPersonType() == "Assassin")
+				{
+					testLocation[i][j].setReveal(1);
+				}
+			}
+		}
+		test.setBoard(testLocation);
+		test.AssassinFound();
+		test.gameState();
+		assertEquals("This is the losing team", "Red", test.getCurrentPlayer());
+	}
 }

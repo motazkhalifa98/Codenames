@@ -14,7 +14,7 @@ public class Board {
 
 	private String currentPlayer = "Red";
 	private String winningTeam = "";
-	private String losingTeam = "";
+	private String losingTeam;
 
 	private int count = 10;
 
@@ -156,11 +156,11 @@ public class Board {
 	public void checkWhoseRevealed() {
 		for (int i =0; i <board.length; i++) {
 			for (int k =0; k < board[i].length; k++) {
-				if(board[i][k].getPersonType()=="RedAgent" && board[i][k].Reveal == 1) {
+				if(((Person)board[i][k].getPersonType()).getPersonType()=="RedAgent" && board[i][k].Reveal == 1) {
 					redAgentsFound += 1;
 					count--;
 				}
-				else if(board[i][k].getPersonType()=="BlueAgent" && board[i][k].Reveal == 1) {
+				else if(((Person)board[i][k].getPersonType()).getPersonType()=="BlueAgent" && board[i][k].Reveal == 1) {
 					blueAgentsFound += 1;
 					count--;
 				}
@@ -173,11 +173,11 @@ public class Board {
 		}
 		else if(redAgentsFound == 9) {
 			winningState = true;
-			winningTeam = getCurrentPlayer();
+			winningTeam = "red";
 		}
 		else if(blueAgentsFound == 8) {
 			winningState = true;
-			winningTeam = getCurrentPlayer();
+			winningTeam = "red";
 		}
 	}
 	
@@ -203,9 +203,9 @@ public class Board {
 				if (((Person)board[i][k].getPersonType()).getPersonType()== "Assassin" && board[i][k].getReveal() == 1) {
 					assassinFound = true;
 					if (currentPlayer == "red") {
-						losingTeam = "blue";
+						losingTeam = "red";
 					} else {
-						losingTeam= "red";
+						losingTeam= "blue";
 					}
 				}
 			}
