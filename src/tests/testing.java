@@ -198,9 +198,11 @@ public class testing
 		
 
 	}
-	
+	/**
+	 * This test sees if the Board is in a winning state because the assassin was found
+	 */
 	@Test
-	public void winningState()
+	public void winningStateAssassinFound()
 	{
 		Board test = new Board(5,5);
 		test.setCodeNames("src/GameWords.txt");
@@ -219,9 +221,58 @@ public class testing
 		test.setBoard(testLocation);
 		test.AssassinFound();
 		test.gameState();
-		assertEquals("this game is over.", true, test.getWinningState());
+		assertEquals("Board is in winning state", true, test.getWinningState());
 	}
-	
+	/**
+	 * This test sees if the Board is in a winning state because all red persons found
+	 */
+	@Test
+	public void winningStateRedFound()
+	{
+		Board test = new Board(5,5);
+		test.setCodeNames("src/GameWords.txt");
+		test.startGame();
+		Location[][] testLocation = test.getBoard();
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for (int j = 0; j < testLocation[i].length; j++)
+			{
+				if(((Person)testLocation[i][j].getPersonType()).getPersonType() == "RedAgent")
+				{
+					testLocation[i][j].setReveal(1);
+				}
+			}
+		}
+		test.setBoard(testLocation);
+		test.checkWhoseRevealed();
+		test.gameState();
+		assertEquals("Board is in winning state", true, test.getWinningState());
+	}
+	/**
+	 * This test sees if the Board is in a winning state because all blue persons found
+	 */
+	@Test
+	public void winningStateBlueFound()
+	{
+		Board test = new Board(5,5);
+		test.setCodeNames("src/GameWords.txt");
+		test.startGame();
+		Location[][] testLocation = test.getBoard();
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for (int j = 0; j < testLocation[i].length; j++)
+			{
+				if(((Person)testLocation[i][j].getPersonType()).getPersonType() == "BlueAgent")
+				{
+					testLocation[i][j].setReveal(1);
+				}
+			}
+		}
+		test.setBoard(testLocation);
+		test.checkWhoseRevealed();
+		test.gameState();
+		assertEquals("Board is in winning state", true, test.getWinningState());
+	}
 	@Test
 	public void updateBoardState()
 	{
