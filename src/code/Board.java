@@ -146,13 +146,13 @@ public class Board {
 		}
 
 	}
-	public void checkGameState(int row, int col) {
+	//public void checkGameState(int row, int col) {
 		//check what thing was revealed 
 		//decide what happens
-		if (board[row][col].getPersonType().equals("Assassin")) {
+		//f (board[row][col].getPersonType().equals("Assassin")) {
 
-		}
-	}
+		//}
+	//}
 	public void checkWhoseRevealed() {
 		for (int i =0; i <board.length; i++) {
 			for (int k =0; k < board[i].length; k++) {
@@ -165,7 +165,7 @@ public class Board {
 			}
 			}
 	}
-	public boolean win() {
+	public boolean gameState() {
 		if(assassinFound) {
 			winningState = true;
 		}
