@@ -182,7 +182,6 @@ public class testing
 		Board test2 = new Board(5,5);
 		test2.setCodeNames("src/GameWords.txt");
 		test2.startGame();
-		List<String> r = test2.getAllCodeNames();
 		test2.checkWhoseRevealed();
 		for(int loc=0; loc<test2.getBoard().length; loc++)
 			for(int loca=0; loca<test2.getBoard()[0].length; loca++)
