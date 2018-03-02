@@ -46,13 +46,13 @@ public class Board {
 	 */
 	private boolean assassinFound;
 	/**
-	 * number of red agents found
+	 * number of red agents to be found
 	 */
-	private int redAgentsFound;
+	private int redAgentsToBeFound;
 	/**
-	 * number of blue agents found
+	 * number of blue agents to be found
 	 */
-	private int blueAgentsFound;
+	private int blueAgentsToBeFound;
 	/**
 	 * ArrayList containing Person instances
 	 */
@@ -199,7 +199,6 @@ public class Board {
 		for (int i=0; i<board.length; i++) {
 			for(int k=0; k<board[0].length; k++) {
 				if (CLUE.equals(board[i][k].getCodeName()) && board[i][k].getReveal() == 0) {
-					//forfeit turn
 					return true;
 				}
 			}
@@ -211,62 +210,48 @@ public class Board {
 	 * @param row desired row for move
 	 * @param col desired column for move
 	 */
-	public void makeMove(int row, int col) {
+	public String makeMove(int row, int col) {
+		String which;
 		board[row][col].setReveal(1); 
-		count--;
+		if(board[row][col].getPersonType()=="Red Agent") {
+			which="Red";
+			redAgentsToBeFound--;
+		}else if(board[row][col].getPersonType()=="Blue Agent") {
+			which="Blue";
+			blueAgentsToBeFound--;
 		}
-		/* whoever wrote this code was TRIPPIN lmao
-			if (currentPlayer.equals("Red")) {
-				board[row][col].setReveal(1);
-				if (((Person)board[row][col].getPersonType()).getPersonType().equals("RedAgent")) {
-					count--;
-				}
-			}
-			else if(currentPlayer.equals("Blue")) {
-				board[row][col].setReveal(1);
-				if (((Person)board[row][col].getPersonType()).getPersonType().equals("BlueAgent")) {
-					count--;
-			
-				}}
-			else {
-				System.out.println("code error somewhere in makeMove()");
-		}
-
-	}
-	*/
-	/**
-	 * Decrements count for each respective person revealed so far
-	 */
-	public void checkWhoseRevealed() {
-		for (int i =0; i <board.length; i++) {
-			for (int k =0; k < board[i].length; k++) {
-				if(((Person)board[i][k].getPersonType()).getPersonType()=="RedAgent" && board[i][k].Reveal == 1) {
-					redAgentsFound += 1;
-					count--;
-				}
-				else if(((Person)board[i][k].getPersonType()).getPersonType()=="BlueAgent" && board[i][k].Reveal == 1) {
-					blueAgentsFound += 1;
-					count--;
-				}
-			}
-		}
+		else if(board[row][col].getPersonType()=="Assassin") {
+			which="Assassin";
+			if (currentPlayer == "Red") {
+				winningTeam = "Blue";
+			return "Blue Wins";
+			}else {
+				winningTeam= "Red";
+				return "Red Wins";
+			}}
+	
+		else {which="Innocent";}
+		if(which==currentPlayer)
+		return "You found your agent!";
+		else return which;
 	}
 	/**
 	 * Determines if the game is in a winning state by checking to see if all red/blue agents are revealed or is the assassin is revealed. Method also sets the winning team
 	 */
-	public void gameState() {
+	public Boolean gameState() {
 		if(assassinFound) {
 			winningState = true;
 			
 		}
-		else if(redAgentsFound == 9) {
+		else if(redAgentsToBeFound == 0) {
 			winningState = true;
 			winningTeam = "Red";
 		}
-		else if(blueAgentsFound == 8) {
+		else if(blueAgentsToBeFound == 0) {
 			winningState = true;
 			winningTeam = "Blue";
 		}
+		return winningState;
 	}
 	/**
 	 * Getter method for the string winning state
@@ -288,31 +273,5 @@ public class Board {
 	 */
 	public void startGame() {
 		makeList();
-	}
-	/**
-	 * Setter for the counter
-	 * @param x desired count
-	 */
-	public void setCount(int x) {
-		count = x;
-	}
-	/**
-	 * Determines 1) If assassin is revealed
-	 * 2) Which team won
-	 *
-	 */
-	public void AssassinFound() {
-		for (int i=0; i<board.length; i++) {
-			for(int k=0; k<board[0].length; k++) {
-				if (((Person)board[i][k].getPersonType()).getPersonType()== "Assassin" && board[i][k].getReveal() == 1) {
-					assassinFound = true;
-					if (currentPlayer == "Red") {
-						winningTeam = "Blue";
-					} else {
-						winningTeam= "Red";
-					}
-				}
-			}
-		}
 	}
 }
