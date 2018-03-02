@@ -154,7 +154,7 @@ public class Board {
 		int tests = 0;
 		int testCount = 0;
 		for (int i =0; i <bleh.length; i++) {
-			for (int k =0; k < bleh[i].length; k++) {
+			for (int k =0; k < bleh[0].length; k++) {
 				Location newLoc= new Location(codenames.get(testCount),persons.get(tests),0);
 				bleh[i][k] = newLoc;
 				tests++;
@@ -213,7 +213,9 @@ public class Board {
 	 */
 	public void makeMove(int row, int col) {
 		board[row][col].setReveal(1); 
-			//reveal the location
+		count--;
+		}
+		/* whoever wrote this code was TRIPPIN lmao
 			if (currentPlayer.equals("Red")) {
 				board[row][col].setReveal(1);
 				if (((Person)board[row][col].getPersonType()).getPersonType().equals("RedAgent")) {
@@ -222,14 +224,18 @@ public class Board {
 			}
 			else if(currentPlayer.equals("Blue")) {
 				board[row][col].setReveal(1);
-			}
+				if (((Person)board[row][col].getPersonType()).getPersonType().equals("BlueAgent")) {
+					count--;
+			
+				}}
 			else {
 				System.out.println("code error somewhere in makeMove()");
 		}
 
 	}
+	*/
 	/**
-	 * Decrements count and increments count for each respective person revealed so far
+	 * Decrements count for each respective person revealed so far
 	 */
 	public void checkWhoseRevealed() {
 		for (int i =0; i <board.length; i++) {

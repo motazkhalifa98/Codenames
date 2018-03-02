@@ -300,7 +300,7 @@ public class testing
 		}
 		test.makeMove(row, column);
 		test.checkWhoseRevealed();
-		assertEquals("count decremented", count - 1, test.getCount());
+		assertEquals("count decremented", count-1, test.getCount());
 		assertEquals("Location does not contain current teams Agent.", "Red", test.getCurrentPlayer());
 		assertEquals("The Player is not revealed", 1, testLocation[row][column].getReveal());
 	}

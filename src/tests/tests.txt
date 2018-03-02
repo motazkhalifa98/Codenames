@@ -26,6 +26,6 @@ testing.java
     @Test public void winningStateBlueFound()
     @Test public void winningStaeRedFound()
     @Test public void winningStateAssassinFound()
-    
+
 9)Method defined which correctly returns which team did not lose (i.e., win) when the Assassin was revealed [10 points]
     @Test public void whichTeamFound()
