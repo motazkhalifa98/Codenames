@@ -16,7 +16,7 @@ import code.Board;
 import code.Location;
 import code.Person;
 /**
- * This class contains 9 junit tests that cover every aspect of the grading rubric for phase 1
+ * This class contains 11 junit tests that cover every aspect of the grading rubric for phase 1
  * 
  * 
  *

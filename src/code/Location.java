@@ -24,6 +24,7 @@ public class Location {
 	 * @param reveal should start as 0
 	 */
 	public Location(String codeName, Person personType, int reveal) {
+
 		CodeName = codeName;
 		PersonType = personType;
 		Reveal = reveal;
