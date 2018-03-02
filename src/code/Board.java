@@ -193,17 +193,17 @@ public class Board {
 	}
 	/**
 	 * Determines if a clue is legal or illegal by checking to see whether that codename is revealed or not
-	 * @return true if illegal, false is legal
+	 * @return false if illegal, true if legal
 	 */
 	public boolean legalClue() {
 		for (int i=0; i<board.length; i++) {
 			for(int k=0; k<board[0].length; k++) {
 				if (CLUE.equals(board[i][k].getCodeName()) && board[i][k].getReveal() == 0) {
-					return true;
+					return false;
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	/**
 	 * Makes one in game "move" by revealing one location and decreasing the count if it is the opposite teams player
@@ -221,6 +221,7 @@ public class Board {
 			blueAgentsToBeFound--;
 		}
 		else if(board[row][col].getPersonType()=="Assassin") {
+			assassinFound=true;
 			which="Assassin";
 			if (currentPlayer == "Red") {
 				winningTeam = "Blue";
@@ -236,10 +237,22 @@ public class Board {
 		else return which;
 	}
 	/**
+	 * Setter for red agents to be found
+	 */
+	public void setRedCount(int red) {
+		redAgentsToBeFound=red;
+	}
+	/**
+	 * Setter for blue agents to be found
+	 */
+	public void setBlueCount(int blue) {
+		blueAgentsToBeFound=blue;
+	}
+	/**
 	 * Determines if the game is in a winning state by checking to see if all red/blue agents are revealed or is the assassin is revealed. Method also sets the winning team
 	 */
 	public Boolean gameState() {
-		if(assassinFound) {
+		if(assassinFound=true) {
 			winningState = true;
 			
 		}

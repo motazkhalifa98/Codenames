@@ -182,18 +182,17 @@ public class testing
 		Board test2 = new Board(5,5);
 		test2.setCodeNames("src/GameWords.txt");
 		test2.startGame();
-		test2.checkWhoseRevealed();
 		for(int loc=0; loc<test2.getBoard().length; loc++)
 			for(int loca=0; loca<test2.getBoard()[0].length; loca++)
 			if(test2.getBoard()[loc][loca].getReveal()==1) {
 				test2.setClue(test2.getBoard()[loc][loca].getCodeName());
-				assertEquals("clue is legal b/c person is revealed",false,test2.legalClue());
+				assertEquals("clue is legal b/c person is revealed",true,test2.legalClue());
 			}else if(test2.getBoard()[loc][loca].getReveal()==0) {
 				test2.setClue(test2.getBoard()[loc][loca].getCodeName());
-				assertEquals("clue is illegal b/c person is not revealed",true,test2.legalClue());
+				assertEquals("clue is illegal b/c person is not revealed",false,test2.legalClue());
 			}
 		test2.setClue("adsfagsd");
-		assertEquals("Legal clue", false, test2.legalClue());
+		assertEquals("Legal clue",true, test2.legalClue());
 		
 
 	}
@@ -206,19 +205,16 @@ public class testing
 		Board test = new Board(5,5);
 		test.setCodeNames("src/GameWords.txt");
 		test.startGame();
-		Location[][] testLocation = test.getBoard();
-		for(int i = 0; i < testLocation.length; i++)
+		for(int i = 0; i < test.getBoard().length; i++)
 		{
-			for (int j = 0; j < testLocation[i].length; j++)
+			for (int j = 0; j < test.getBoard()[i].length; j++)
 			{
-				if(((Person)testLocation[i][j].getPersonType()).getPersonType() == "Assassin")
+				if(test.getBoard()[i][j].getPersonType() == "Assassin")
 				{
-					testLocation[i][j].setReveal(1);
+					test.makeMove(i,j);
 				}
 			}
 		}
-		test.setBoard(testLocation);
-		test.AssassinFound();
 		test.gameState();
 		assertEquals("Board is in winning state", true, test.getWinningState());
 	}
@@ -231,19 +227,7 @@ public class testing
 		Board test = new Board(5,5);
 		test.setCodeNames("src/GameWords.txt");
 		test.startGame();
-		Location[][] testLocation = test.getBoard();
-		for(int i = 0; i < testLocation.length; i++)
-		{
-			for (int j = 0; j < testLocation[i].length; j++)
-			{
-				if(((Person)testLocation[i][j].getPersonType()).getPersonType() == "RedAgent")
-				{
-					testLocation[i][j].setReveal(1);
-				}
-			}
-		}
-		test.setBoard(testLocation);
-		test.checkWhoseRevealed();
+		test.setRedCount(0);
 		test.gameState();
 		assertEquals("Board is in winning state", true, test.getWinningState());
 	}
@@ -256,25 +240,13 @@ public class testing
 		Board test = new Board(5,5);
 		test.setCodeNames("src/GameWords.txt");
 		test.startGame();
-		Location[][] testLocation = test.getBoard();
-		for(int i = 0; i < testLocation.length; i++)
-		{
-			for (int j = 0; j < testLocation[i].length; j++)
-			{
-				if(((Person)testLocation[i][j].getPersonType()).getPersonType() == "BlueAgent")
-				{
-					testLocation[i][j].setReveal(1);
-				}
-			}
-		}
-		test.setBoard(testLocation);
-		test.checkWhoseRevealed();
+		test.setBlueCount(0);
 		test.gameState();
 		assertEquals("Board is in winning state", true, test.getWinningState());
 	}
 	/**
 	 * This tests that there is a method which:
-	 * decrements the count,
+	 * decrements the count of agents to be found,
 	 * updates a Location when codename selected,
 	 * returns if Location contained current teams agent,
 	 */
@@ -299,7 +271,7 @@ public class testing
 			}
 		}
 		test.makeMove(row, column);
-		test.checkWhoseRevealed();
+		test.gameState();
 		assertEquals("count decremented", count-1, test.getCount());
 		assertEquals("Location does not contain current teams Agent.", "Red", test.getCurrentPlayer());
 		assertEquals("The Player is not revealed", 1, testLocation[row][column].getReveal());
@@ -326,7 +298,6 @@ public class testing
 			}
 		}
 		test.setBoard(testLocation);
-		test.AssassinFound();
 		test.gameState();
 		assertEquals("This is the winning team", "Blue", test.getWinningTeam());
 	}
