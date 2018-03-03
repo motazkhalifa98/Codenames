@@ -3,10 +3,8 @@ package tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -212,11 +210,13 @@ public class testing
 				if(test.getBoard()[i][j].getPersonType() == "Assassin")
 				{
 					test.makeMove(i,j);
+					test.gameState();
+					assertEquals("Board is in winning state", true, test.getWinningState());
 				}
 			}
 		}
-		test.gameState();
-		assertEquals("Board is in winning state", true, test.getWinningState());
+		
+
 	}
 	/**
 	 * This test sees if the Board is in a winning state because all red persons found
@@ -255,26 +255,26 @@ public class testing
 	{
 		Board test = new Board(5,5);
 		test.setCodeNames("src/GameWords.txt");
-		test.startGame();
 		test.setCurrentPlayer("Red");
+		test.startGame();
 		Location[][] testLocation = test.getBoard();
-		int count = test.getCount(); int row = 0; int column = 0;
 		for(int i = 0; i < testLocation.length; i++)
 		{
-			for(int j = 0; j < testLocation[i].length; j++)
+			for(int j = 0; j < testLocation[0].length; j++)
 			{
 				if(testLocation[i][j].getPersonType() == "RedAgent")
 				{
-					row = i;
-					column = j;
+					test.makeMove(i, j);
+					test.gameState();
+					assertEquals("count decremented", 8, test.getRedCount());
+					assertEquals("Location does not contain current teams Agent.", "Red", test.getCurrentPlayer());
+					assertEquals("The Player is revealed", 1, testLocation[i][j].getReveal());
 				}
 			}
 		}
-		test.makeMove(row, column);
-		test.gameState();
-		assertEquals("count decremented", count-1, test.getCount());
-		assertEquals("Location does not contain current teams Agent.", "Red", test.getCurrentPlayer());
-		assertEquals("The Player is not revealed", 1, testLocation[row][column].getReveal());
+
+		
+		
 	}
 	/**
 	 * Tests that there is a method that returns the winning team when the assassin is revealed
@@ -284,21 +284,22 @@ public class testing
 	{
 		Board test = new Board(5,5);
 		test.setCodeNames("src/GameWords.txt");
-		test.startGame();
 		test.setCurrentPlayer("Red");
+		test.startGame();
 		Location[][] testLocation = test.getBoard();
 		for(int i = 0; i < testLocation.length; i++)
 		{
-			for (int j = 0; j < testLocation[i].length; j++)
+			for(int j = 0; j < testLocation[0].length; j++)
 			{
-				if(((Person)testLocation[i][j].getPersonType()).getPersonType() == "Assassin")
+				if(testLocation[i][j].getPersonType() == "Assassin")
 				{
-					testLocation[i][j].setReveal(1);
+					test.makeMove(i, j);
+					test.gameState();
+					assertEquals("Game in winning state", true, test.getWinningState());
+					assertEquals("Assassin Revealed",1,testLocation[i][j].getReveal());
+					assertEquals("Blue should win", "Blue", test.getWinningTeam());
 				}
 			}
-		}
-		test.setBoard(testLocation);
-		test.gameState();
-		assertEquals("This is the winning team", "Blue", test.getWinningTeam());
+		}	
 	}
 }

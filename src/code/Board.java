@@ -22,10 +22,6 @@ public class Board {
 	 */
 	private String winningTeam = "no winner";
 	/**
-	 * Counter---starts at 10
-	 */
-	private int count = 10;
-	/**
 	 * Matrix of Location instances
 	 */
 	private Location[][] board;
@@ -48,11 +44,11 @@ public class Board {
 	/**
 	 * number of red agents to be found
 	 */
-	private int redAgentsToBeFound;
+	private int redAgentsToBeFound=9;
 	/**
 	 * number of blue agents to be found
 	 */
-	private int blueAgentsToBeFound;
+	private int blueAgentsToBeFound=8;
 	/**
 	 * ArrayList containing Person instances
 	 */
@@ -80,14 +76,6 @@ public class Board {
 	 */
 	public String getWinningTeam() {
 		return winningTeam;
-	}
-	/**
-	 * Access method for the current count
-	 * @return current count
-	 */
-	public int getCount()
-	{
-		return count;
 	}
 	/**
 	 * Setter for the Location matrix of this board
@@ -133,7 +121,6 @@ public class Board {
 	 * Creates all persons, shuffles them, puts them in a matrix, and sends it to the board
 	 */
 	public void makeList() {
-
 		for (int i=0; i <9; i++) {
 			RedAgent red = new RedAgent();
 			persons.add(red);
@@ -149,19 +136,15 @@ public class Board {
 		Assassin assassin = new Assassin();
 		persons.add(assassin);
 		Collections.shuffle(persons);
-		Location[][] bleh = new Location[5][5];
-
-		int tests = 0;
-		int testCount = 0;
-		for (int i =0; i <bleh.length; i++) {
-			for (int k =0; k < bleh[0].length; k++) {
-				Location newLoc= new Location(codenames.get(testCount),persons.get(tests),0);
-				bleh[i][k] = newLoc;
-				tests++;
-				testCount++;
+		int count=0;
+		Location[][] board2=new Location[board.length][board[0].length];
+		for(int i=0; i<board2.length; i++) 
+			for(int j=0; j<board2[0].length; j++) {
+				Location newLoc= new Location(codenames.get(count),persons.get(count),0);
+				board2[i][j] = newLoc;
+				count++;
 			}
-		}
-		setBoard(bleh);
+		setBoard(board2);
 	}
 	/**
 	 * Getter for the current clue
@@ -249,10 +232,26 @@ public class Board {
 		blueAgentsToBeFound=blue;
 	}
 	/**
+	 * Access method for the red agent count
+	 * 
+	 * @return The number of red agents that have not been revealed
+	 */
+	public int getRedCount() {
+		return redAgentsToBeFound;
+	}
+	/**
+	 * Access method for the blue agent count
+	 * 
+	 * @return The number of blue agents that have not been revealed
+	 */
+	public int getBlueCount() {
+		return blueAgentsToBeFound;
+	}
+	/**
 	 * Determines if the game is in a winning state by checking to see if all red/blue agents are revealed or is the assassin is revealed. Method also sets the winning team
 	 */
 	public Boolean gameState() {
-		if(assassinFound=true) {
+		if(assassinFound==true) {
 			winningState = true;
 			
 		}

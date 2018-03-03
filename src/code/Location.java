@@ -18,8 +18,8 @@ public class Location {
 	 */
 	int Reveal;
 	/**
-	 * Location contructor
-	 * @param codeName codename from file
+	 * Location constructor
+	 * @param codeName code name from file
 	 * @param personType red/blue/assassin/innocent
 	 * @param reveal should start as 0
 	 */
@@ -29,6 +29,9 @@ public class Location {
 		PersonType = personType;
 		Reveal = reveal;
 			
+	}
+	public Location() {
+		
 	}
 	/**
 	 * Getter for this Location's codename
@@ -42,7 +45,7 @@ public class Location {
 	 * @param codeName the desired codename
 	 */
 	public void setCodeName(String codeName) {
-		CodeName = codeName;
+		this.CodeName = codeName;
 	}
 	/**
 	 * Getter for this Location's person type
