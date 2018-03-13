@@ -7,23 +7,23 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 public class GUI implements ActionListener, ItemListener{
-	private static Board _board;
-	private static code _windowHolder;
-	private static JPanel mainPanel;
-    public GUI(Board b,JPanel cd, code code) {
-    	_windowHolder = code;
-    	_board = b;
-    	mainPanel = cd;
+	private Board board;
+	private code code;
+	private JPanel mainPanel;
+	
+    public GUI(Board b,JPanel panel, code code) {
+    	this.code = code;
+    	this.board = b;
+    	mainPanel = panel;
     	mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-    	_board.startGame();
+    	startGUI();
+    	board.startGame();
     }
     
     
-    public static void startGUI() {
+    public void startGUI() {
         JFrame frame = new JFrame("Codenames");
         frame.setSize(1000, 1000);
-        GUI gui = new GUI(_board, mainPanel, _windowHolder);
-        
         JMenuBar menuBar = new JMenuBar();
         JMenu menu1 = new JMenu("FILE");
         menuBar.add(menu1);
@@ -34,10 +34,15 @@ public class GUI implements ActionListener, ItemListener{
         startItem.addActionListener(new ActionListener() {
         		@Override
         		public void actionPerformed(ActionEvent event) {
-        		startGUI();
+        		
         }
         });
-        quitItem.addActionListener(gui);
+        quitItem.addActionListener(new ActionListener() {
+    		@Override
+    		public void actionPerformed(ActionEvent event) {
+    		
+    }
+    });
 
         
         JPanel panel = new JPanel();

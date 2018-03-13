@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import code.Person;
 
-public class Board extends GUI{
+public class Board{
 	/**
 	 * This String contains the current clue
 	 */
