@@ -2,44 +2,63 @@ package code;
 
 import javax.swing.*;
 import java.awt.*;
-class GUI {
-    public static void main(String args[]) {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+public class GUI implements ActionListener, ItemListener{
+    public GUI() {
 
-        //Creating the Frame
-        JFrame frame = new JFrame("Chat Frame");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 400);
+    }
+    
+    public static void main(String[] args){
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                startGUI();
+            }
+        });
+    }
+    
+    public static void startGUI() {
+        JFrame frame = new JFrame("Codenames");
+        frame.setSize(1000, 1000);
+        
+        GUI gui = new GUI();
+        
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu1 = new JMenu("FILE");
+        menuBar.add(menu1);
+        JMenuItem startItem = new JMenuItem("Start");
+        JMenuItem quitItem = new JMenuItem("Quit");
+        menu1.add(startItem);
+        menu1.add(quitItem);
+        startItem.addActionListener(new ActionListener() {
+        		@Override
+        		public void actionPerformed(ActionEvent event) {
+        		endGame();
+        		startGame();
+        }
+        });
+        quitItem.addActionListener(gui);
 
-        //Creating the MenuBar and adding components
-        JMenuBar mb = new JMenuBar();
-        JMenu m1 = new JMenu("FILE");
-        JMenu m2 = new JMenu("Help");
-        mb.add(m1);
-        mb.add(m2);
-        JMenuItem m11 = new JMenuItem("Open");
-        JMenuItem m22 = new JMenuItem("Save as");
-        m1.add(m11);
-        m1.add(m22);
+        
+        JPanel panel = new JPanel();
 
-        //Creating the panel at bottom and adding components
-        JPanel panel = new JPanel(); // the panel is not visible in output
-        JLabel label = new JLabel("Enter Text");
-        JTextField tf = new JTextField(10); // accepts upto 10 characters
-        JButton send = new JButton("Send");
-        JButton reset = new JButton("Reset");
-        panel.add(label); // Components Added using Flow Layout
-        panel.add(label); // Components Added using Flow Layout
-        panel.add(tf);
-        panel.add(send);
-        panel.add(reset);
-
-        // Text Area at the Center
-        JTextArea ta = new JTextArea();
-
-        //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
-        frame.getContentPane().add(BorderLayout.NORTH, mb);
-        frame.getContentPane().add(BorderLayout.CENTER, ta);
+        frame.getContentPane().add(BorderLayout.NORTH, menuBar);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }
