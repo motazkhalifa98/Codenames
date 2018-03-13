@@ -7,24 +7,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 public class GUI implements ActionListener, ItemListener{
-    public GUI() {
-
+	private static Board _board;
+	private static code _windowHolder;
+	private static JPanel mainPanel;
+    public GUI(Board b,JPanel cd, code code) {
+    	_windowHolder = code;
+    	_board = b;
+    	mainPanel = cd;
+    	mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+    	_board.startGame();
     }
     
-    public static void main(String[] args){
-        SwingUtilities.invokeLater(new Runnable(){
-            @Override
-            public void run() {
-                startGUI();
-            }
-        });
-    }
     
     public static void startGUI() {
         JFrame frame = new JFrame("Codenames");
         frame.setSize(1000, 1000);
-        
-        GUI gui = new GUI();
+        GUI gui = new GUI(_board, mainPanel, _windowHolder);
         
         JMenuBar menuBar = new JMenuBar();
         JMenu menu1 = new JMenu("FILE");
@@ -36,8 +34,7 @@ public class GUI implements ActionListener, ItemListener{
         startItem.addActionListener(new ActionListener() {
         		@Override
         		public void actionPerformed(ActionEvent event) {
-        		endGame();
-        		startGame();
+        		startGUI();
         }
         });
         quitItem.addActionListener(gui);
