@@ -6,7 +6,7 @@ public class StartUp {
 	
 	public static void main(String[] args){
 		//This creates a app window
-    	JFrame frame = new JFrame("I Hate CSE Major");
+    	JFrame frame = new GUIv2("I Hate CSE Major");
     	//size if screen (x, y)
     	frame.setSize(1000, 800);
     	//even though you exit the app, the program still runs, therefore
