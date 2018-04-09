@@ -46,9 +46,11 @@ public class MainMenuPanel extends JPanel{
 				if(running){
 					int thing = JOptionPane.showOptionDialog(null, "Do you want start a new game?", "New Game Conformation", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 					if(thing == 0 && thing != -1){
+						//this is supposed to make a new game
 						cl.show(mainPanel, "3");
 					}
 					else if(thing == 1 && thing != -1){
+						//this is supposed to continue the game
 						cl.show(mainPanel, "4");
 					}
 				}
