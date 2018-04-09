@@ -17,8 +17,7 @@ public class MainFrame extends JFrame{
 	private boolean gameRunning = false;
 	private MainMenuPanel mainMenuPanel;
 	private SpyMasterPanel spyMasterPanel;
-	private RedPanel redPanel;
-	private BluePanel bluePanel;
+	private GamePanel gamePanel;
 	private BonusPanel bonusPanel;
 	
 	public MainFrame(String title) {
@@ -51,17 +50,15 @@ public class MainFrame extends JFrame{
     		}
         });
 		
-        mainMenuPanel = new MainMenuPanel(mainPanel, cl, gameRunning);
-        bonusPanel = new BonusPanel(mainPanel, cl, gameRunning);
-        spyMasterPanel = new SpyMasterPanel(mainPanel, cl, gameRunning);
-        redPanel = new RedPanel(mainPanel, cl, gameRunning);
-        bluePanel = new BluePanel(mainPanel, cl, gameRunning);
+        mainMenuPanel = new MainMenuPanel(mainPanel, cl);
+        bonusPanel = new BonusPanel(mainPanel, cl);
+        spyMasterPanel = new SpyMasterPanel(mainPanel, cl);
+        gamePanel = new GamePanel(mainPanel, cl);
     	mainPanel.setLayout(cl);
     	mainPanel.add(mainMenuPanel, "1");
     	mainPanel.add(bonusPanel, "2");
     	mainPanel.add(spyMasterPanel, "3");
-    	mainPanel.add(redPanel, "4");
-    	mainPanel.add(bluePanel, "5");
+    	mainPanel.add(gamePanel, "4");
     	cl.show(mainPanel, "1");
 		//Add Swing components
         c.add(menuBar, BorderLayout.NORTH);

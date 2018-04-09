@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 public class BonusPanel extends JPanel{
 	
-	public BonusPanel(JPanel mainPanel, CardLayout cl, boolean gameRunning) {
+	public BonusPanel(JPanel mainPanel, CardLayout cl) {
 		setBackground(Color.CYAN);
 		JButton buttonD1 = new JButton("Main Menu");
 		buttonD1.setPreferredSize(new Dimension(100, 30));

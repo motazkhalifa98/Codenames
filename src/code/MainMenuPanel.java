@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class MainMenuPanel extends JPanel{
-	public MainMenuPanel(JPanel mainPanel, CardLayout cl, boolean gameRunning) {
+	boolean running = false;
+	public MainMenuPanel(JPanel mainPanel, CardLayout cl) {
 //		Dimension size = getPreferredSize();
 //		size.width = 250;
 //		setPreferredSize(size);
@@ -42,7 +43,19 @@ public class MainMenuPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 //				// TODO Auto-generated method stub
 //				//start the game
-				cl.show(mainPanel, "3");
+				if(running){
+					int thing = JOptionPane.showOptionDialog(null, "Do you want start a new game?", "New Game Conformation", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+					if(thing == 0 && thing != -1){
+						cl.show(mainPanel, "3");
+					}
+					else if(thing == 1 && thing != -1){
+						cl.show(mainPanel, "4");
+					}
+				}
+				else{
+					running = true;
+					cl.show(mainPanel, "3");
+				}
 			}
 			
 		});

@@ -19,7 +19,7 @@ public class SpyMasterPanel extends JPanel implements KeyListener{
 	private CardLayout cl;
 	private boolean gameRunning;
 	
-	public SpyMasterPanel(JPanel mainPanel, CardLayout cl, boolean gameRunning) {
+	public SpyMasterPanel(JPanel mainPanel, CardLayout cl) {
 		// TODO Auto-generated constructor stub
 		this.mainPanel = mainPanel;
 		this.cl = cl;

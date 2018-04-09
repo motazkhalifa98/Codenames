@@ -17,12 +17,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class RedPanel extends JPanel{
+public class GamePanel extends JPanel{
 	
 	
 	private String[] options = {"Yes", "No"};
 
-	public RedPanel(JPanel mainPanel, CardLayout cl, boolean gameRunning) {
+	public GamePanel(JPanel mainPanel, CardLayout cl) {
 		// TODO Auto-generated constructor stub
 		setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
