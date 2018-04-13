@@ -10,14 +10,15 @@ public class GUI implements ActionListener, ItemListener{
 	private Board board;
 	private code code;
 	private JPanel mainPanel;
+	private JLabel[][] matrix=new JLabel[5][5];
 	
     public GUI(Board b,JPanel panel, code code) {
     	this.code = code;
     	this.board = b;
     	mainPanel = panel;
-    	mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-    	startGUI();
+    	mainPanel.setLayout(new GridLayout(5,5));
     	board.startGame();
+    	startGUI();
     }
     
     
@@ -34,7 +35,7 @@ public class GUI implements ActionListener, ItemListener{
         startItem.addActionListener(new ActionListener() {
         		@Override
         		public void actionPerformed(ActionEvent event) {
-        		
+        		Board board=new Board(5,5);
         }
         });
         quitItem.addActionListener(new ActionListener() {

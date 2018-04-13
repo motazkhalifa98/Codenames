@@ -14,7 +14,7 @@ public class Board{
 	 */
 	private String CLUE = "this is a clue";
 	/**
-	 * This String conatins the current player
+	 * This String contains the current player
 	 */
 	private String currentPlayer = "Red";
 	/**

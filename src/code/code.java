@@ -21,8 +21,7 @@ public class code implements Runnable {
 	public static void main(String[] args) {
 		Board b = new Board(5, 5);
 		SwingUtilities.invokeLater(new code(b));
-		
-	}
+            }
 
 	@Override
 	public void run() {
