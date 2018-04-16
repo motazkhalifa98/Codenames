@@ -15,19 +15,23 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class SpyMasterPanel extends JPanel implements KeyListener{
+public class SpyMasterPanel extends JPanel{
 
 	private JTextField hintField;
+	private JTextField countField;
 	private JPanel mainPanel;
 	private CardLayout cl;
+	private Board board;
 	
-	public SpyMasterPanel(JPanel mainPanel, CardLayout cl) {
+	public SpyMasterPanel(JPanel mainPanel, CardLayout cl,Board board) {
 		// TODO Auto-generated constructor stub
 		this.mainPanel = mainPanel;
 		this.cl = cl;
+		this.board=board;
 		setLayout(new GridBagLayout());
 		
 		setLayout(new GridBagLayout());
@@ -36,10 +40,23 @@ public class SpyMasterPanel extends JPanel implements KeyListener{
 		hintField = new JTextField("Type in your hint here SpyMaster", 20);
 		hintLabel.setFont(new Font("Serif", Font.BOLD, 40));
 		hintField.setFont(new Font ("Arial", Font.BOLD, 35));
-		hintField.addKeyListener(this);
+		countField = new JTextField("Count",4);
+		JLabel countLabel = new JLabel("Count: ");
+		countLabel.setFont(new Font("Serif", Font.BOLD, 40));
+		countField.setFont(new Font ("Arial", Font.BOLD, 35));
 		
-		JLabel label = new JLabel("Input your hint");
-		label.setFont(new Font("Ariel", Font.ITALIC, 40));
+		JButton button = new JButton("Submit");
+		button.setPreferredSize(new Dimension(300, 50));
+		button.addActionListener(new ActionListener() {
+        	
+        	@Override
+        	public void actionPerformed(ActionEvent event) {
+    			board.setClue(hintField.getText());
+    			board.setCount(countField.getText());
+    			checkLegal();
+        	}
+        });
+		
 		JPanel locationButtons = new JPanel();
 		locationButtons.setBackground(Color.ORANGE);
 		locationButtons.setLayout(new GridLayout(5, 5, 10, 10));
@@ -47,13 +64,22 @@ public class SpyMasterPanel extends JPanel implements KeyListener{
     	for(int i = 1; i<26; i++){
     		JButton b = new JButton("Button " + i);
     		b.setEnabled(false);
-    		//stuff
-    		
-    		
-    		b.setPreferredSize(new Dimension(100, 50));
+    		//if board[i][y] is not revealed
+    		//set text to ???
+    		//else set text to board[i][y]s person type
+    		b.setPreferredSize(new Dimension(400, 100));
     		jbuttonList.add(b);
     	}
-		
+    	int count=0;
+		Location [][] locs=board.getBoard();
+		for(int x=0; x<5; x++)
+			for( int y=0; y<5; y++) {
+				if(locs[x][y].getReveal()==0)
+					jbuttonList.get(count).setText("Codename: "+locs[x][y].getCodeName()+" Type: "+locs[x][y].getPersonType().toString());
+				else jbuttonList.get(count).setText(" Type: "+locs[x][y].getPersonType());
+				count++;
+			}
+				
 		GridBagConstraints gc = new GridBagConstraints();
 		for(int i=0; i<jbuttonList.size(); i++){
 			locationButtons.add(jbuttonList.get(i));
@@ -67,39 +93,32 @@ public class SpyMasterPanel extends JPanel implements KeyListener{
 		add(hintField, gc);
 		
 		gc.gridx = 0;
-		gc.gridy = 2;
+		gc.gridy = 1;
+		add(countLabel, gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 1;
+		add(countField, gc);
+		
+		gc.gridx = 0;
+		gc.gridy = 3;
 		gc.gridwidth = 2;
 		add(locationButtons, gc);
 		
+		gc.gridx= 0;
+		gc.gridy = 4;
+		gc.gridwidth = 1;
+		add(button, gc);
 	}
 
 	private void checkLegal() {
-		// TODO Auto-generated method stub
 		System.out.println(hintField.getText());
-		if(hintField.getText().equals("legal")) {
+		if(board.legalClue()&&board.legalCount()) {
 			cl.show(mainPanel, "4");
-		}
-	}
-	
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			checkLegal();
-		}
-	}
+		}else if(board.legalClue()==false){
+			JOptionPane.showMessageDialog(this, "Illegal Clue", "PLEASE READ", JOptionPane.WARNING_MESSAGE);
+		}else JOptionPane.showMessageDialog(this, "Illegal Count", "PLEASE READ", JOptionPane.WARNING_MESSAGE);
 
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

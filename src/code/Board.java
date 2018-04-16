@@ -16,7 +16,7 @@ public class Board{
 	/**
 	 * This String contains the current player
 	 */
-	private String currentPlayer = "Red";
+	private String currentPlayer = "RedAgent";
 	/**
 	 * This String contains the winning team(if the game is won)
 	 */
@@ -38,8 +38,13 @@ public class Board{
 	 */
 	private boolean winningState;
 	/**
+	 * current count integer
+	 */
+	private int count;
+	/**
 	 * true if assassin has been revealed
 	 */
+
 	private boolean assassinFound;
 	/**
 	 * number of red agents to be found
@@ -175,6 +180,21 @@ public class Board{
 		return currentPlayer;
 	}
 	/**
+	 * Setter for the count variable
+	 * @param desired new count
+	 */
+	public void setCount(String count) {
+		this.count=new Integer(count);
+	}
+	/**
+	 * Getter for count variable
+	 * @return the current count
+	 */
+
+	public int getCount() {
+		return count;
+	}
+	/**
 	 * Determines if a clue is legal or illegal by checking to see whether that codename is revealed or not
 	 * @return false if illegal, true if legal
 	 */
@@ -285,5 +305,10 @@ public class Board{
 	 */
 	public void startGame() {
 		makeList();
+	}
+	public boolean legalCount() {
+		if(count<1 || count>25)
+			return false;
+		else return true;
 	}
 }

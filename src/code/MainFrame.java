@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -19,6 +20,7 @@ public class MainFrame extends JFrame{
 	private SpyMasterPanel spyMasterPanel;
 	private GamePanel gamePanel;
 	private BonusPanel bonusPanel;
+	private ArrayList<String> answers=new ArrayList<String>();
 	
 	public MainFrame(String title) {
 		super(title);
@@ -35,6 +37,13 @@ public class MainFrame extends JFrame{
         JMenuItem quitItem = new JMenuItem("Quit");
         menu1.add(startItem);
         menu1.add(quitItem);
+        Board board=new Board(5,5);
+        board.setCodeNames("src/GameWords.txt");
+        board.makeList();
+		for(int i=0; i<5; i++)
+			for(int y=0; y<5; y++)
+				answers.add(board.getBoard()[i][y].getPersonType().toString());
+        //System.out.println(board.getGameCodeNames());
         startItem.addActionListener(new ActionListener() {
         	
         	@Override
@@ -50,10 +59,10 @@ public class MainFrame extends JFrame{
     		}
         });
 		
-        mainMenuPanel = new MainMenuPanel(mainPanel, cl);
-        bonusPanel = new BonusPanel(mainPanel, cl);
-        spyMasterPanel = new SpyMasterPanel(mainPanel, cl);
-        gamePanel = new GamePanel(mainPanel, cl);
+        mainMenuPanel = new MainMenuPanel(mainPanel, cl,board);
+        bonusPanel = new BonusPanel(mainPanel, cl,board);
+        spyMasterPanel = new SpyMasterPanel(mainPanel, cl,board);
+        gamePanel = new GamePanel(mainPanel, cl,board,answers);
     	mainPanel.setLayout(cl);
     	mainPanel.add(mainMenuPanel, "1");
     	mainPanel.add(bonusPanel, "2");

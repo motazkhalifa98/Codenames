@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 public class MainMenuPanel extends JPanel{
 	boolean running = false;
-	public MainMenuPanel(JPanel mainPanel, CardLayout cl) {
+	public MainMenuPanel(JPanel mainPanel, CardLayout cl, Board board) {
 //		Dimension size = getPreferredSize();
 //		size.width = 250;
 //		setPreferredSize(size);
@@ -48,6 +48,8 @@ public class MainMenuPanel extends JPanel{
 					if(thing == 0 && thing != -1){
 						//this is supposed to make a new game
 						cl.show(mainPanel, "3");
+						JOptionPane.showMessageDialog(null, board.getCurrentPlayer(), "PLEASE READ", JOptionPane.WARNING_MESSAGE);
+
 					}
 					else if(thing == 1 && thing != -1){
 						//this is supposed to continue the game
@@ -57,6 +59,8 @@ public class MainMenuPanel extends JPanel{
 				else{
 					running = true;
 					cl.show(mainPanel, "3");
+					JOptionPane.showMessageDialog(null, board.getCurrentPlayer(), "PLEASE READ", JOptionPane.WARNING_MESSAGE);
+
 				}
 			}
 			
@@ -69,6 +73,7 @@ public class MainMenuPanel extends JPanel{
 				// TODO Auto-generated method stub
 				//what ever button two does
 				cl.show(mainPanel, "2");
+
 			}
 			
 		});
