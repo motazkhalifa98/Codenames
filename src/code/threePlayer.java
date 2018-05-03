@@ -257,7 +257,16 @@ public class threePlayer{
 		else {which="Innocent";}
 		if(which==currentPlayer)
 		return "You found your agent!";
-		else return which;
+		else {
+			int idx = 0;
+			if(remainingPlayers.contains(currentPlayer)) {
+				idx = remainingPlayers.indexOf(currentPlayer);
+				if(idx == (remainingPlayers.size() - 1))
+					currentPlayer = remainingPlayers.get(0);
+				currentPlayer = remainingPlayers.get(idx + 1);
+			}
+			return which;
+		}
 	}
 	/**
 	 * Setter for red agents to be found
