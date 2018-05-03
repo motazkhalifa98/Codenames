@@ -229,13 +229,13 @@ public class threePlayer{
 	public String makeMove(int row, int col) {
 		String which;
 		board[row][col].setReveal(1); 
-		if(board[row][col].getPersonType()=="Red Agent") {
+		if(board[row][col].getPersonType()=="RedAgent") {
 			which="Red";
 			redAgentsToBeFound--;
-		}else if(board[row][col].getPersonType()=="Blue Agent") {
+		}else if(board[row][col].getPersonType()=="BlueAgent") {
 			which="Blue";
 			blueAgentsToBeFound--;
-		}else if(board[row][col].getPersonType()=="Green Agent") {
+		}else if(board[row][col].getPersonType()=="GreenAgent") {
 			which="Green";
 			greenAgentsToBeFound--;
 		}
