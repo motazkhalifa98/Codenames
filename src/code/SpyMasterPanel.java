@@ -32,18 +32,21 @@ public class SpyMasterPanel extends JPanel{
 		this.mainPanel = mainPanel;
 		this.cl = cl;
 		this.board=board;
+		
 		setLayout(new GridBagLayout());
 		
 		setLayout(new GridBagLayout());
 		setBackground(Color.ORANGE);
 		JLabel hintLabel = new JLabel("Hint: ");
-		hintField = new JTextField("Type in your hint here SpyMaster", 200);
 		hintLabel.setFont(new Font("Serif", Font.BOLD, 40));
+		hintField = new JTextField("Type in your hint here SpyMaster", 20);
+		hintField.setMinimumSize(hintField.getPreferredSize());
 		hintField.setFont(new Font ("Arial", Font.BOLD, 35));
-		countField = new JTextField("Count",200);
 		JLabel countLabel = new JLabel("Count: ");
 		countLabel.setFont(new Font("Serif", Font.BOLD, 40));
+		countField = new JTextField("Count", 20);
 		countField.setFont(new Font ("Arial", Font.BOLD, 35));
+		countField.setMinimumSize(hintField.getPreferredSize());
 		
 		JButton button = new JButton("Submit");
 		button.setPreferredSize(new Dimension(300, 50));
@@ -52,8 +55,42 @@ public class SpyMasterPanel extends JPanel{
         	@Override
         	public void actionPerformed(ActionEvent event) {
     			board.setClue(hintField.getText());
-    			board.setCount(countField.getText());
-    			checkLegal();
+    			if(countField.getText().length()>2) {
+    				checkLegal();
+    			}
+    			else{
+    				boolean something = false;
+    				String thing = countField.getText();
+    				if(thing.length() == 1) {
+    					for(int i=0; i<10; i++) {
+        					String number = "" + i;
+        					if(thing.substring(0, 1).equals(number)) {
+        						something =true;
+        					}
+    					}
+    				}
+    				else {
+    					for(int i=0; i<10; i++) {
+    						String number = "" + i;
+    						
+    						if(thing.substring(0, 1).equals(number)) {
+    							for(int k = 0; k <10 ; k++) {
+    								String number2 = "" + k;
+    								if(thing.substring(1, 2).equals(number2)) {
+    									something =true;
+    								}    							
+    							}
+    						}
+    					}
+    				}
+    				if(something == true) {
+    					board.setCount(thing);
+    					checkLegal();
+    				}
+    				else {
+    					JOptionPane.showMessageDialog(null, "Illegal Count", "PLEASE READ", JOptionPane.WARNING_MESSAGE);
+    				}
+    			}
         	}
         });
 		
@@ -109,6 +146,7 @@ public class SpyMasterPanel extends JPanel{
 		for(int i=0; i<jbuttonList.size(); i++){
 			locationButtons.add(jbuttonList.get(i));
 		}
+//		gc.fill =GridBagConstraints.HORIZONTAL;
 		gc.gridx = 0;
 		gc.gridy = 0;
 		gc.gridwidth = 1;
@@ -116,7 +154,7 @@ public class SpyMasterPanel extends JPanel{
 		
 		gc.gridx = 1;
 		gc.gridy = 0;
-		gc.gridwidth = 2;
+		gc.gridwidth = 1;
 		add(hintField, gc);
 		
 		gc.gridx = 0;
@@ -126,11 +164,12 @@ public class SpyMasterPanel extends JPanel{
 		
 		gc.gridx = 1;
 		gc.gridy = 1;
-		gc.gridwidth = 2;
+		gc.gridwidth = 1;
 		add(countField, gc);
 		
 		gc.gridx = 0;
 		gc.gridy = 3;
+		gc.gridwidth = 2;
 		add(locationButtons, gc);
 		
 		gc.gridx= 0;
