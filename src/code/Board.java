@@ -126,18 +126,13 @@ public class Board{
 	 * Creates all persons, shuffles them, puts them in a matrix, and sends it to the board
 	 */
 	public void makeList() {
-		for (int i=0; i <6; i++) {
+		for (int i=0; i <9; i++) {
 			RedAgent red = new RedAgent();
 			persons.add(red);
 		}
-		for (int x=0; x< 5; x++) {
+		for (int x=0; x< 8; x++) {
 			BlueAgent blue = new BlueAgent();
 			persons.add(blue);
-		}
-		for (int j=0; j< 5; j++)
-		{
-			GreenAgent green = new GreenAgent();
-			persons.add(green);
 		}
 		for (int y=0; y< 7; y++) {
 			InnocentBystander innocent = new InnocentBystander();
