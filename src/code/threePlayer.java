@@ -305,9 +305,8 @@ public class threePlayer{
 	 * Determines if the game is in a winning state by checking to see if all red/blue agents are revealed or is the assassin is revealed. Method also sets the winning team
 	 */
 	public Boolean gameState() {
-		if(assassinFound==true) {
+		if(assassinFound==0) {
 			winningState = true;
-			
 		}
 		else if(redAgentsToBeFound == 0) {
 			winningState = true;
