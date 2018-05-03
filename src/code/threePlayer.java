@@ -45,7 +45,7 @@ public class threePlayer{
 	 * true if assassin has been revealed
 	 */
 
-	private boolean assassinFound;
+	private int assassinFound=2;
 	/**
 	 * number of red agents to be found
 	 */
@@ -240,7 +240,7 @@ public class threePlayer{
 			greenAgentsToBeFound--;
 		}
 		else if(board[row][col].getPersonType()=="Assassin") {
-			assassinFound=true;
+			assassinFound--;
 			which="Assassin";
 			if (currentPlayer == "Red") {
 				remainingPlayers.remove("Red");
