@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import code.Person;
 
-public class Board{
+public class threePlayer{
 	/**
 	 * This String contains the current clue
 	 */
@@ -61,16 +61,19 @@ public class Board{
 	/**
 	 * ArrayList containing Person instances
 	 */
+	private ArrayList<String> remainingPlayers = new ArrayList<String>();
 	private ArrayList<Person> persons = new ArrayList<Person>();
 	/**
 	 * Board constructor creates a Location Matrix using paramters given
 	 * @param x the number of rows
 	 * @param y the number of columns
 	 */
-	public Board(int x, int y) {
+	public threePlayer(int x, int y) {
 		Location[][] thisboard = new Location[x][y];
 		this.board = thisboard;
-
+		remainingPlayers.add("Red");
+		remainingPlayers.add("Blue");
+		remainingPlayers.add("Green");
 	}
 	/**
 	 * Access method for the Boards matrix
@@ -148,6 +151,8 @@ public class Board{
 		}
 		Assassin assassin = new Assassin();
 		persons.add(assassin);
+		Assassin assassin2 = new Assassin();
+		persons.add(assassin2);
 		Collections.shuffle(persons);
 		int count=0;
 		Location[][] board2=new Location[board.length][board[0].length];
@@ -238,13 +243,17 @@ public class Board{
 			assassinFound=true;
 			which="Assassin";
 			if (currentPlayer == "Red") {
-				winningTeam = "Blue";
-			return "Blue Wins";
-			}else {
-				winningTeam= "Red";
-				return "Red Wins";
-			}}
-	
+				remainingPlayers.remove("Red");
+			}else if(currentPlayer == "Blue") {
+				remainingPlayers.remove("Blue");
+			}else if(currentPlayer == "Green") {
+				remainingPlayers.remove("Green");
+			}
+		}
+		if(remainingPlayers.size() == 1)
+		{
+			return remainingPlayers.get(0) + " Wins";
+		}
 		else {which="Innocent";}
 		if(which==currentPlayer)
 		return "You found your agent!";
@@ -307,6 +316,10 @@ public class Board{
 		else if(blueAgentsToBeFound == 0) {
 			winningState = true;
 			winningTeam = "Blue";
+		}
+		else if(greenAgentsToBeFound == 0) {
+			winningState = true;
+			winningTeam = "Green";
 		}
 		return winningState;
 	}
