@@ -246,7 +246,7 @@ public class Board{
 		else
 			currentPlayer = "RedAgent";
 	}
-	/**
+	/** 
 	 * Setter for red agents to be found
 	 */
 	public void setRedCount(int red) {
