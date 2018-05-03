@@ -117,12 +117,13 @@ public class testing
 	}
 	/**
 	 * This method tests that there are randomly generated assignments for
-	 * 9 red, 8 blue, 7 innocent, and 1 assassin
-	 */
+	 * 6 red, 5 blue, 5 green, 7 innocent, and 2 assassins
+	 */ 
 	@Test
 	public void testAssignments() {
 		int red=0;
 		int blue=0;
+		int green=0;
 		int inn=0;
 		int ass=0;
 		Board test=new Board(5,5);
@@ -138,13 +139,16 @@ public class testing
 					blue++;
 				else if(((Person) one.getPersonType()).getPersonType()=="InnocentBystander")
 					inn++;
+				else if(((Person) one.getPersonType()).getPersonType()=="GreenAgent")
+					green++;
 				else if(((Person) one.getPersonType()).getPersonType()=="Assassin")
 					ass++;
 			}
-		assertTrue(red==9);
-		assertTrue(blue==8);
+		assertTrue(red==6);
+		assertTrue(blue==5);
+		assertTrue(green==5);
 		assertTrue(inn==7);
-		assertTrue(ass==1);
+		assertTrue(ass==2);
 	}
 	/**
 	 * This method ensures that Red goes first
@@ -195,10 +199,10 @@ public class testing
 
 	}
 	/**
-	 * This test sees if the Board is in a winning state because the assassin was found
+	 * This test sees if the Board is in a winning state because both the assassins were found
 	 */
 	@Test
-	public void winningStateAssassinFound()
+	public void winningStateAssassinsFound()
 	{
 		Board test = new Board(5,5);
 		test.setCodeNames("src/GameWords.txt");
@@ -210,13 +214,11 @@ public class testing
 				if(test.getBoard()[i][j].getPersonType() == "Assassin")
 				{
 					test.makeMove(i,j);
-					test.gameState();
-					assertEquals("Board is in winning state", true, test.getWinningState());
 				}
 			}
 		}
-		
-
+		test.gameState();
+		assertEquals("Board is in winning state", true, test.getWinningState());
 	}
 	/**
 	 * This test sees if the Board is in a winning state because all red persons found
@@ -241,6 +243,19 @@ public class testing
 		test.setCodeNames("src/GameWords.txt");
 		test.startGame();
 		test.setBlueCount(0);
+		test.gameState();
+		assertEquals("Board is in winning state", true, test.getWinningState());
+	}
+	/**
+	 * This test sees if the Board is in a winning state because all green persons found
+	 */
+	@Test
+	public void winningStateGreenFound()
+	{
+		Board test = new Board(5,5);
+		test.setCodeNames("src/GameWords.txt");
+		test.startGame();
+		test.setGreenCount(0);
 		test.gameState();
 		assertEquals("Board is in winning state", true, test.getWinningState());
 	}
@@ -275,6 +290,97 @@ public class testing
 
 		
 		
+	}
+	/**
+	 * Tests that there is a method that correctly determines whose turn is next
+	 */
+	@Test
+	public void nextMove()
+	{
+		Board test = new Board(5,5);
+		test.setCodeNames("src/GameWords.txt");
+		test.setCurrentPlayer("Red");
+		test.startGame();
+		assertEquals("Red should start game","Red",test.getCurrentPlayer());
+		Location[][] testLocation = test.getBoard();
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for(int j = 0; j < testLocation[0].length; j++)
+			{
+				if(testLocation[i][j].getPersonType() == "Assassin")
+				{
+					if(testLocation[i][j].getReveal()==0)
+					{
+						test.makeMove(i, j);
+						i=testLocation.length;
+						assertEquals("Should be blues turn after red finds an assassin","Blue",test.getCurrentPlayer());
+					}
+				}
+			}
+		}
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for(int j = 0; j < testLocation[0].length; j++)
+			{
+				if(testLocation[i][j].getPersonType() == "Assassin")
+				{
+					if(testLocation[i][j].getReveal()==1)
+					{
+						testLocation[i][j].setReveal(0);
+						test.makeMove(i, j);
+						i=testLocation.length;
+						assertEquals("Should be greens turn after blue finds an assassin","Green",test.getCurrentPlayer());
+					}
+				}
+			}
+		}
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for(int j = 0; j < testLocation[0].length; j++)
+			{
+				if(testLocation[i][j].getPersonType() == "Assassin")
+				{
+					if(testLocation[i][j].getReveal()==1)
+					{
+						testLocation[i][j].setReveal(0);
+						test.makeMove(i, j);
+						i=testLocation.length;
+						assertEquals("Should be red turn after green finds an assassin","Red",test.getCurrentPlayer());
+					}
+				}
+			}
+		}
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for(int j = 0; j < testLocation[0].length; j++)
+			{
+				if(testLocation[i][j].getPersonType() == "Assassin")
+				{
+					if(testLocation[i][j].getReveal()==1)
+					{
+						testLocation[i][j].setReveal(0);
+						test.makeMove(i, j);
+						i=testLocation.length;
+						assertEquals("Should be Blue turn after red finds an assassin","Green",test.getCurrentPlayer());
+					}
+				}
+			}
+		}
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for(int j = 0; j < testLocation[0].length; j++)
+			{
+				if(testLocation[i][j].getPersonType() == "Assassin")
+				{
+					if(testLocation[i][j].getReveal()==1)
+					{
+						test.makeMove(i, j);
+						i=testLocation.length;
+						assertEquals("Should be reds turn after green finds an assassin","Green",test.getCurrentPlayer());
+					}
+				}
+			}
+		}
 	}
 	/**
 	 * Tests that there is a method that returns the winning team when the assassin is revealed
