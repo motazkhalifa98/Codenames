@@ -13,6 +13,7 @@ import org.junit.Test;
 import code.Board;
 import code.Location;
 import code.Person;
+import code.threePlayer;
 /**
  * This class contains 11 junit tests that cover every aspect of the grading rubric for phase 1
  * 
@@ -126,7 +127,7 @@ public class testing
 		int green=0;
 		int inn=0;
 		int ass=0;
-		Board test=new Board(5,5);
+		threePlayer test=new threePlayer(5,5);
 		test.setCodeNames("src/GameWords.txt");
 		test.startGame();
 		Location[][] testing=test.getBoard();
@@ -162,7 +163,7 @@ public class testing
 		test.setCodeNames("src/GameWords.txt");
 		test.startGame();
 		Location[][] testLocation = test.getBoard();
-		assertEquals("Red team goes first","Red", test.getCurrentPlayer());
+		assertEquals("Red team goes first","RedAgent", test.getCurrentPlayer());
 		for(int i = 0; i < testLocation.length; i++)
 		{
 			for(int j = 0; j < testLocation[0].length; j++)
@@ -204,7 +205,7 @@ public class testing
 	@Test
 	public void winningStateAssassinsFound()
 	{
-		Board test = new Board(5,5);
+		threePlayer test = new threePlayer(5,5);
 		test.setCodeNames("src/GameWords.txt");
 		test.startGame();
 		for(int i = 0; i < test.getBoard().length; i++)
@@ -252,7 +253,7 @@ public class testing
 	@Test
 	public void winningStateGreenFound()
 	{
-		Board test = new Board(5,5);
+		threePlayer test = new threePlayer(5,5);
 		test.setCodeNames("src/GameWords.txt");
 		test.startGame();
 		test.setGreenCount(0);
@@ -297,7 +298,7 @@ public class testing
 	@Test
 	public void nextMove()
 	{
-		Board test = new Board(5,5);
+		threePlayer test = new threePlayer(5,5);
 		test.setCodeNames("src/GameWords.txt");
 		test.setCurrentPlayer("Red");
 		test.startGame();
