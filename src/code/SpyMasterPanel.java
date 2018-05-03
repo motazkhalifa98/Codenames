@@ -37,10 +37,10 @@ public class SpyMasterPanel extends JPanel{
 		setLayout(new GridBagLayout());
 		setBackground(Color.ORANGE);
 		JLabel hintLabel = new JLabel("Hint: ");
-		hintField = new JTextField("Type in your hint here SpyMaster", 20);
+		hintField = new JTextField("Type in your hint here SpyMaster", 200);
 		hintLabel.setFont(new Font("Serif", Font.BOLD, 40));
 		hintField.setFont(new Font ("Arial", Font.BOLD, 35));
-		countField = new JTextField("Count",4);
+		countField = new JTextField("Count",200);
 		JLabel countLabel = new JLabel("Count: ");
 		countLabel.setFont(new Font("Serif", Font.BOLD, 40));
 		countField.setFont(new Font ("Arial", Font.BOLD, 35));
@@ -74,9 +74,34 @@ public class SpyMasterPanel extends JPanel{
 		Location [][] locs=board.getBoard();
 		for(int x=0; x<5; x++)
 			for( int y=0; y<5; y++) {
-				if(locs[x][y].getReveal()==0)
-					jbuttonList.get(count).setText("Codename: "+locs[x][y].getCodeName()+" Type: "+locs[x][y].getPersonType().toString());
-				else jbuttonList.get(count).setText(" Type: "+locs[x][y].getPersonType());
+				if(locs[x][y].getReveal()==0) {	
+					if(((Person)locs[x][y].getPersonType()).getPersonType()=="RedAgent") {
+						jbuttonList.get(count).setText("Codename: "+locs[x][y].getCodeName()+" Type: Red Agent");					}
+					else if(((Person)locs[x][y].getPersonType()).getPersonType()=="BlueAgent") {
+						jbuttonList.get(count).setText("Codename: "+locs[x][y].getCodeName()+" Type: Blue Agent");					}
+					else if(((Person)locs[x][y].getPersonType()).getPersonType()=="Assassin") {
+						jbuttonList.get(count).setText("Codename: "+locs[x][y].getCodeName()+" Type: Assassin");
+					}
+					else if(((Person)locs[x][y].getPersonType()).getPersonType()=="InnocentBystander") {
+						jbuttonList.get(count).setText("Codename: "+locs[x][y].getCodeName()+" Type: Innocent Bystander");
+					}
+//					jbuttonList.get(count).setText("Codename: "+locs[x][y].getCodeName()+" Type: "+locs[x][y].getPersonType().toString());
+				}
+				else {
+					if(locs[x][y].getPersonType().equals("RedAgent")) {
+						jbuttonList.get(count).setText("Type: Red Agent");
+					}
+					else if(locs[x][y].getPersonType().equals("BlueAgent")) {
+						jbuttonList.get(count).setText("Type: Blue Agent");
+					}
+					else if(locs[x][y].getPersonType().equals("Assassin")) {
+						jbuttonList.get(count).setText("Type: Assassin");
+					}
+					else if(locs[x][y].getPersonType().equals("InnocentBystander")) {
+						jbuttonList.get(count).setText("Type: Innocent Bystander");
+					}
+//					jbuttonList.get(count).setText(" Type: "+locs[x][y].getPersonType());
+				}
 				count++;
 			}
 				
@@ -86,23 +111,26 @@ public class SpyMasterPanel extends JPanel{
 		}
 		gc.gridx = 0;
 		gc.gridy = 0;
+		gc.gridwidth = 1;
 		add(hintLabel, gc);
 		
 		gc.gridx = 1;
 		gc.gridy = 0;
+		gc.gridwidth = 2;
 		add(hintField, gc);
 		
 		gc.gridx = 0;
 		gc.gridy = 1;
+		gc.gridwidth = 1;
 		add(countLabel, gc);
 		
 		gc.gridx = 1;
 		gc.gridy = 1;
+		gc.gridwidth = 2;
 		add(countField, gc);
 		
 		gc.gridx = 0;
 		gc.gridy = 3;
-		gc.gridwidth = 2;
 		add(locationButtons, gc);
 		
 		gc.gridx= 0;
