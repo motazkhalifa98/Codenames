@@ -258,13 +258,7 @@ public class threePlayer{
 		if(which==currentPlayer)
 		return "You found your agent!";
 		else {
-			int idx = 0;
-			if(remainingPlayers.contains(currentPlayer)) {
-				idx = remainingPlayers.indexOf(currentPlayer);
-				if(idx == (remainingPlayers.size() - 1))
-					currentPlayer = remainingPlayers.get(0);
-				currentPlayer = remainingPlayers.get(idx + 1);
-			}
+			nextPlayer();
 			return which;
 		}
 	}
@@ -273,6 +267,16 @@ public class threePlayer{
 	 */
 	public void setRedCount(int red) {
 		redAgentsToBeFound=red;
+	}
+	public void nextPlayer()
+	{
+		int idx = 0;
+		if(remainingPlayers.contains(currentPlayer)) {
+			idx = remainingPlayers.indexOf(currentPlayer);
+			if(idx == (remainingPlayers.size() - 1))
+				currentPlayer = remainingPlayers.get(0);
+			currentPlayer = remainingPlayers.get(idx + 1);
+		}
 	}
 	/**
 	 * Setter for blue agents to be found

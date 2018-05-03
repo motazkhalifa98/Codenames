@@ -239,6 +239,13 @@ public class Board{
 		return "You found your agent!";
 		else return which;
 	}
+	public void nextPlayer()
+	{
+		if(currentPlayer == "RedAgent")
+			currentPlayer = "BlueAgent";
+		else
+			currentPlayer = "RedAgent";
+	}
 	/**
 	 * Setter for red agents to be found
 	 */
