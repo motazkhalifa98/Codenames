@@ -69,7 +69,10 @@ public class GamePanel extends JPanel{
 						board.nextPlayer();
 						JOptionPane.showMessageDialog(null, "Your hint count has hit zero, next person's turn");
 						if(board.getCurrentPlayer().equals("redAgent")) {
-							
+							setBackground(Color.RED);
+						}
+						else {
+							setBackground(Color.BLUE);
 						}
 					}
 					else {
