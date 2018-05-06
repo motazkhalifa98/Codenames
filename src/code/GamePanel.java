@@ -64,7 +64,15 @@ public class GamePanel extends JPanel{
 					System.out.println(board.getBoard()[row][col].getPersonType());
 					if(board.getBoard()[row][col].getPersonType().toString().contains(board.getCurrentPlayer())) {
 						
-					}else {
+					}
+					else if(board.getCount() == 0) {
+						board.nextPlayer();
+						JOptionPane.showMessageDialog(null, "Your hint count has hit zero, next person's turn");
+						if(board.getCurrentPlayer().equals("redAgent")) {
+							
+						}
+					}
+					else {
 						if(board.getCurrentPlayer().equals("RedAgent")) {							
 							board.setCurrentPlayer("BlueAgent");
 							setBackground(Color.BLUE);
