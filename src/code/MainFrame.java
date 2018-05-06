@@ -20,6 +20,8 @@ public class MainFrame extends JFrame{
 	private SpyMasterPanel spyMasterPanel;
 	private GamePanel gamePanel;
 	private BonusPanel bonusPanel;
+	private SpyMasterPanelThreePlayer spyMasterPanelThreePlayer;
+	private GamePanelThreePlayer gamePanelThreePlayer;
 	private ArrayList<String> answers=new ArrayList<String>();
 	
 	public MainFrame(String title) {
@@ -63,11 +65,15 @@ public class MainFrame extends JFrame{
         bonusPanel = new BonusPanel(mainPanel, cl,board);
         spyMasterPanel = new SpyMasterPanel(mainPanel, cl,board);
         gamePanel = new GamePanel(mainPanel, cl,board,answers);
+        spyMasterPanelThreePlayer = new SpyMasterPanelThreePlayer(mainPanel, cl, board);
+        gamePanelThreePlayer = new GamePanelThreePlayer(mainPanel, cl, board);
     	mainPanel.setLayout(cl);
     	mainPanel.add(mainMenuPanel, "1");
     	mainPanel.add(bonusPanel, "2");
     	mainPanel.add(spyMasterPanel, "3");
     	mainPanel.add(gamePanel, "4");
+    	mainPanel.add(spyMasterPanelThreePlayer, "5");
+    	mainPanel.add(gamePanelThreePlayer, "6");
     	cl.show(mainPanel, "1");
 		//Add Swing components
         c.add(menuBar, BorderLayout.NORTH);

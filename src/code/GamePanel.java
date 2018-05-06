@@ -66,13 +66,15 @@ public class GamePanel extends JPanel{
 						
 					}
 					else if(board.getCount() == 0) {
-						board.nextPlayer();
+						
 						JOptionPane.showMessageDialog(null, "Your hint count has hit zero, next person's turn");
-						if(board.getCurrentPlayer().equals("redAgent")) {
-							setBackground(Color.RED);
+						if(board.getCurrentPlayer().equals("RedAgent")) {
+							board.setCurrentPlayer("BlueAgent");
+							setBackground(Color.BLUE);
 						}
 						else {
-							setBackground(Color.BLUE);
+							board.setCurrentPlayer("RedAgent");
+							setBackground(Color.RED);
 						}
 					}
 					else {
@@ -82,7 +84,6 @@ public class GamePanel extends JPanel{
 						}
 						else {
 							board.setCurrentPlayer("RedAgent");
-						
 							setBackground(Color.RED);
 						}
 						JOptionPane.showMessageDialog(null, "You have lost your turn");
@@ -123,7 +124,15 @@ public class GamePanel extends JPanel{
 				if(thing == 0 && thing != -1){
 					JOptionPane.showMessageDialog(null, "You have ended your turn");
 					//other code
-//					cl.show(mainPanel, "3");
+//					cl.show(mainPanel, "3");	
+					if(board.getCurrentPlayer().equals("RedAgent")) {
+						board.setCurrentPlayer("BlueAgent");
+						setBackground(Color.RED);
+					}
+					else {
+						board.setCurrentPlayer("RedAgent");
+						setBackground(Color.BLUE);
+					}
 					
 				}
 			}
