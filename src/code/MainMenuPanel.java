@@ -30,8 +30,10 @@ public class MainMenuPanel extends JPanel{
 //    	label1.setPreferredSize(new Dimension(500, 200));
     	label1.setFont(new Font("Serif", Font.BOLD, 50));
     	
-		JButton buttonA1 = new JButton("Start");
-		buttonA1.setPreferredSize(new Dimension(600, 50));
+		JButton buttonA1 = new JButton("Standard Two Player");
+		buttonA1.setPreferredSize(new Dimension(300, 50));
+		JButton buttonA1b = new JButton("Three-Way-Play");
+		buttonA1b.setPreferredSize(new Dimension(300, 50));
 		JButton buttonA2 = new JButton("Click Click");
 		buttonA2.setPreferredSize(new Dimension(300, 50));
 		JButton buttonA3 = new JButton("Exit");
@@ -64,6 +66,15 @@ public class MainMenuPanel extends JPanel{
 				}
 			}
 			
+		});
+		
+		buttonA1b.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cl.show(mainPanel, "5");
+			}
 		});
 		
 		buttonA2.addActionListener(new ActionListener(){
@@ -99,18 +110,19 @@ public class MainMenuPanel extends JPanel{
 		
 		gc.gridx = 1;
 		gc.gridy = 1;
-		//not needed cuz already set but here for good looks
-		gc.gridwidth = 2;
+		gc.gridwidth = 1;
 		add(buttonA1, gc);
+		
+		gc.gridx = 2;
+		gc.gridy = 1;
+		add(buttonA1b, gc);
 		
 		gc.gridx = 1;
 		gc.gridy = 2;
-		gc.gridwidth = 1;
 		add(buttonA2, gc);
 		
 		gc.gridx = 2;
 		gc.gridy = 2;
-		gc.gridwidth = 1;
 		add(buttonA3, gc);
 	}
 }

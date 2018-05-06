@@ -89,6 +89,8 @@ public class SpyMasterPanel extends JPanel{
     				}
     				else {
     					JOptionPane.showMessageDialog(null, "Illegal Count", "PLEASE READ", JOptionPane.WARNING_MESSAGE);
+    					hintField.setText("Type in your hint here SpyMaster");
+    					countField.setText("Count");
     				}
     			}
         	}
@@ -181,10 +183,18 @@ public class SpyMasterPanel extends JPanel{
 	private void checkLegal() {
 		System.out.println(hintField.getText());
 		if(board.legalClue()&&board.legalCount()) {
+			hintField.setText("Type in your hint here SpyMaster");
+			countField.setText("Count");
 			cl.show(mainPanel, "4");
 		}else if(board.legalClue()==false){
 			JOptionPane.showMessageDialog(this, "Illegal Clue", "PLEASE READ", JOptionPane.WARNING_MESSAGE);
-		}else JOptionPane.showMessageDialog(this, "Illegal Count", "PLEASE READ", JOptionPane.WARNING_MESSAGE);
+			hintField.setText("Type in your hint here SpyMaster");
+			countField.setText("Count");
+		}else {
+			JOptionPane.showMessageDialog(this, "Illegal Count", "PLEASE READ", JOptionPane.WARNING_MESSAGE);
+			hintField.setText("Type in your hint here SpyMaster");
+			countField.setText("Count");
+		}
 
 	}
 
