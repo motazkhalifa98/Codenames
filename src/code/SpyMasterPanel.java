@@ -32,9 +32,6 @@ public class SpyMasterPanel extends JPanel{
 		this.mainPanel = mainPanel;
 		this.cl = cl;
 		this.board=board;
-		
-		setLayout(new GridBagLayout());
-		
 		setLayout(new GridBagLayout());
 		setBackground(Color.ORANGE);
 		JLabel hintLabel = new JLabel("Hint: ");
@@ -185,7 +182,7 @@ public class SpyMasterPanel extends JPanel{
 		if(board.legalClue()&&board.legalCount()) {
 			hintField.setText("Type in your hint here SpyMaster");
 			countField.setText("Count");
-			cl.show(mainPanel, "4");
+			cl.show(mainPanel, "6");
 		}else if(board.legalClue()==false){
 			JOptionPane.showMessageDialog(this, "Illegal Clue", "PLEASE READ", JOptionPane.WARNING_MESSAGE);
 			hintField.setText("Type in your hint here SpyMaster");

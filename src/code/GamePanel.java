@@ -31,7 +31,7 @@ public class GamePanel extends JPanel{
 		
 		setBackground(Color.RED);
 		JPanel locationButtons = new JPanel();
-		locationButtons.setBackground(Color.RED);
+		locationButtons.setBackground(Color.BLACK);
 		
 		JLabel label = new JLabel("Select A Person");
 		label.setFont(new Font("Ariel", Font.ITALIC, 40));

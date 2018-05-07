@@ -23,6 +23,7 @@ public class MainFrame extends JFrame{
 	private SpyMasterPanelThreePlayer spyMasterPanelThreePlayer;
 	private GamePanelThreePlayer gamePanelThreePlayer;
 	private ArrayList<String> answers=new ArrayList<String>();
+	private ArrayList<String> answers2 = new ArrayList<String>();
 	
 	public MainFrame(String title) {
 		super(title);
@@ -42,9 +43,15 @@ public class MainFrame extends JFrame{
         Board board=new Board(5,5);
         board.setCodeNames("src/GameWords.txt");
         board.makeList();
-		for(int i=0; i<5; i++)
-			for(int y=0; y<5; y++)
-				answers.add(board.getBoard()[i][y].getPersonType().toString());
+        threePlayer board2 = new threePlayer(5,5);
+        board2.setCodeNames("src/GameWords2.txt");
+		board2.makeList();
+        for(int i=0; i<5; i++) {
+        	for(int y=0; y<5; y++) {
+        		answers.add(board.getBoard()[i][y].getPersonType().toString());
+        		answers2.add(board2.getBoard()[i][y].getPersonType().toString());
+        	}
+        }
         //System.out.println(board.getGameCodeNames());
         startItem.addActionListener(new ActionListener() {
         	
@@ -65,8 +72,8 @@ public class MainFrame extends JFrame{
         bonusPanel = new BonusPanel(mainPanel, cl,board);
         spyMasterPanel = new SpyMasterPanel(mainPanel, cl,board);
         gamePanel = new GamePanel(mainPanel, cl,board,answers);
-        spyMasterPanelThreePlayer = new SpyMasterPanelThreePlayer(mainPanel, cl, board);
-        gamePanelThreePlayer = new GamePanelThreePlayer(mainPanel, cl, board);
+        spyMasterPanelThreePlayer = new SpyMasterPanelThreePlayer(mainPanel, cl, board2);
+        gamePanelThreePlayer = new GamePanelThreePlayer(mainPanel, cl, board2,answers2);
     	mainPanel.setLayout(cl);
     	mainPanel.add(mainMenuPanel, "1");
     	mainPanel.add(bonusPanel, "2");
