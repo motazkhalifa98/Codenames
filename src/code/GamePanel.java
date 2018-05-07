@@ -63,7 +63,11 @@ public class GamePanel extends JPanel{
 					b.setEnabled(false);
 					System.out.println(board.getBoard()[row][col].getPersonType());
 					if(board.getBoard()[row][col].getPersonType().toString().contains(board.getCurrentPlayer())) {
-						
+						board.makeMove(row, col);
+						if(board.getWinningState() == true) {
+							JOptionPane.showMessageDialog(null, board.getWinningTeam() + " Team Wins!!!!");
+							cl.show(mainPanel, "1");
+						}
 					}
 					else if(board.getCount() == 0) {
 						
