@@ -89,7 +89,6 @@ public class GamePanel extends JPanel{
 							setBackground(Color.RED);
 						}
 						JOptionPane.showMessageDialog(null, "You have lost your turn");
-						cl.show(mainPanel, "3");
 					}
 						
 				}
