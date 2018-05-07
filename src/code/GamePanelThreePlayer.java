@@ -60,23 +60,32 @@ public class GamePanelThreePlayer extends JPanel{
 					b.setEnabled(false);
 					System.out.println(board2.getBoard()[row][col].getPersonType());
 					if(board2.getBoard()[row][col].getPersonType().toString().contains(board2.getCurrentPlayer())) {
-						
+						if(board2.getBoard()[row][col].getPersonType().toString().contains(board2.getCurrentPlayer())) {
+							board2.makeMove(row, col);
+							if(board2.getWinningState() == true) {
+								JOptionPane.showMessageDialog(null, board2.getWinningTeam() + " Team Wins!!!!");
+								cl.show(mainPanel, "1");
+							}
+						}
 					}
 					else if(board2.getCount() == 0) {
 						
 						JOptionPane.showMessageDialog(null, "Your hint count has hit zero, next person's turn");
 						if(board2.getCurrentPlayer().equals("RedAgent")) {
-							board2.setCurrentPlayer("BlueAgent");
+							board2.nextPlayer();
+							board2.setCurrentPlayer(board2.getCurrentPlayer());
 							setBackground(Color.BLUE);
 							cl.show(mainPanel, "5");
 						}
 						else if(board2.getCurrentPlayer().equals("BlueAgent")){
-							board2.setCurrentPlayer("RedAgent");
+							board2.nextPlayer();
+							board2.setCurrentPlayer(board2.getCurrentPlayer());
 							setBackground(Color.RED);
 							cl.show(mainPanel, "5");
 						}
 						else {
-							board2.setCurrentPlayer("RedAgent");
+							board2.nextPlayer();
+							board2.setCurrentPlayer(board2.getCurrentPlayer());
 							setBackground(Color.GREEN);
 							cl.show(mainPanel, "5");
 						}
