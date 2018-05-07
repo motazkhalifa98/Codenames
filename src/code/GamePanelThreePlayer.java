@@ -65,7 +65,7 @@ public class GamePanelThreePlayer extends JPanel{
 							if(board2.getWinningState() == true) {
 								JOptionPane.showMessageDialog(null, board2.getWinningTeam() + " Team Wins!!!!");
 								cl.show(mainPanel, "1");
-							}
+							} 
 						}
 					}
 					else if(board2.getCount() == 0) {
