@@ -130,11 +130,11 @@ public class GamePanel extends JPanel{
 //					cl.show(mainPanel, "3");	
 					if(board.getCurrentPlayer().equals("RedAgent")) {
 						board.setCurrentPlayer("BlueAgent");
-						setBackground(Color.RED);
+						setBackground(Color.BLUE);
 					}
 					else {
 						board.setCurrentPlayer("RedAgent");
-						setBackground(Color.BLUE);
+						setBackground(Color.RED);
 					}
 					
 				}
