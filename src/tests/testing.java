@@ -387,11 +387,12 @@ public class testing
 				{
 					test.makeMove(i, j);
 					test.gameState();
-					assertEquals("Game in winning state", true, test.getWinningState());
-					assertEquals("Assassin Revealed",1,testLocation[i][j].getReveal());
-					assertEquals("Blue should win", "Blue", test.getWinningTeam());
+
 				}
 			}
-		}	
+		}
+		assertEquals("Game in winning state", true, test.getWinningState());
+		//assertEquals("Assassin Revealed",1,testLocation[i][j].getReveal());
+		assertEquals("Blue should win", "Blue", test.getWinningTeam());
 	}
 }

@@ -1,31 +1,17 @@
 package tests
 testing.java
 
-1)Defines a Board class contains 25 Location instances [6 points]
-    @Test public void Test25Locations()
-
-2)Correctly reads codenames from a file named GameWords.txt and stores them in a List [10 points] (sample files you can use are here and here)
-    @Test public void TestReadCodenameFile()
-
-3)Creates List containing 25 distinct codenames selected at random [10 points] (hint: Java has some methods that could be a starting point for your implementation)
-    @Test public void test25UniqueCodenames()
-
-4)Creates List containing randomly generated assignments for each of the 9 Red Agents, 8 Blue Agents, 7 Innocent Bystanders, and 1 Assassin [10 points] (hint: Java has some methods that could be a starting point for how to randomly order locations)
+1)Creates a List containing randomly generated assignments for each of the 6 Red Agents, 5 Blue Agents, 5 Green Agents, 7 Innocent Bystanders, and 2 Assassins [3 points]
     @Test public void testAssignments()
 
-5)When game started, it is Red team's move and each of Board's 25 Location instances is assigned a codename, Person, and is Not Revealed [15 points]
-    @Test public void testLocationFilled
-
-6)Method defined which correctly returns if a clue is legal or illegal (clues cannot equal a current codename unless that codename is in a locations that was already Revealed) [10 points]
-    @Test public void legalClue()
-
-7)Method defined which decrements the count, updates a Location when the Location's codename was selected, and returns if the Location contained the current team's Agent [10 points]
-    @Test public void updateBoardState()
-
-8)Method defined which correctly returns whether or not the Board is in one of the winning states [15 points]
+2)Method defined which correctly returns whether or not the Board is in one of the winning states [5 points]
     @Test public void winningStateBlueFound()
-    @Test public void winningStaeRedFound()
+    @Test public void winningStateRedFound()
     @Test public void winningStateAssassinFound()
+    @Test public void winningStateGreenFound()
 
-9)Method defined which correctly returns which team did not lose (i.e., win) when the Assassin was revealed [10 points]
+3)Method defined which correctly returns which team wins once the 2nd Assassin is revealed [8 points]
     @Test public void whichTeamFound()
+    
+4)Method which returns which is used at the end of a turn to determine the team whose move is next (this must include the possibility that the next team in the 3-team rotation had previously Revealed an Assassin) [7 points]
+	@Test public void nextMove()
