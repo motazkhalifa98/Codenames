@@ -26,6 +26,7 @@ public class SpyMasterPanel extends JPanel{
 	private JPanel mainPanel;
 	private CardLayout cl;
 	private Board board;
+	private GamePanel gamePanel;
 	
 	public SpyMasterPanel(JPanel mainPanel, CardLayout cl,Board board) {
 		// TODO Auto-generated constructor stub
@@ -34,7 +35,6 @@ public class SpyMasterPanel extends JPanel{
 		this.board=board;
 		setLayout(new GridBagLayout());
 		setBackground(Color.ORANGE);
-		
 		JLabel hintLabel = new JLabel("Hint: ");
 		hintLabel.setFont(new Font("Serif", Font.BOLD, 40));
 		hintField = new JTextField("Type in your hint here SpyMaster", 20);

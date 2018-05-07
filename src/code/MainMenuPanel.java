@@ -91,7 +91,7 @@ public class MainMenuPanel extends JPanel{
 					}
 				}
 				else{
-					running = true;
+					running2 = true;
 					cl.show(mainPanel, "5");
 					JOptionPane.showMessageDialog(null, board.getCurrentPlayer(), "PLEASE READ", JOptionPane.WARNING_MESSAGE);
 
