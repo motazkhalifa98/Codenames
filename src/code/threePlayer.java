@@ -337,7 +337,7 @@ public class threePlayer{
 	}
 	/**
 	 * Getter method for the string winning state
-	 * @return which team won
+	 * @return true if game is in winning state, false otherwise
 	 */
 	public boolean getWinningState()
 	{

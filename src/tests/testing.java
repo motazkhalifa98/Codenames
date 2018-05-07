@@ -212,7 +212,7 @@ public class testing
 		{
 			for (int j = 0; j < test.getBoard()[i].length; j++)
 			{
-				if(test.getBoard()[i][j].getPersonType() == "Assassin")
+				if(test.getBoard()[i][j].getPersonType()=="Assassin")
 				{
 					test.makeMove(i,j);
 				}
@@ -323,14 +323,30 @@ public class testing
 		{
 			for(int j = 0; j < testLocation[0].length; j++)
 			{
-				if(testLocation[i][j].getPersonType() == "Assassin")
+				if(testLocation[i][j].getPersonType() == "RedAgent")
 				{
 					if(testLocation[i][j].getReveal()==1)
 					{
 						testLocation[i][j].setReveal(0);
 						test.makeMove(i, j);
 						i=testLocation.length;
-						assertEquals("Should be greens turn after blue finds an assassin","Green",test.getCurrentPlayer());
+						assertEquals("Should be greens turn after blue finds a red  agent","Green",test.getCurrentPlayer());
+					}
+				}
+			}
+		}
+		for(int i = 0; i < testLocation.length; i++)
+		{
+			for(int j = 0; j < testLocation[0].length; j++)
+			{
+				if(testLocation[i][j].getPersonType() == "RedAgent")
+				{
+					if(testLocation[i][j].getReveal()==1)
+					{
+						testLocation[i][j].setReveal(0);
+						test.makeMove(i, j);
+						i=testLocation.length;
+						assertEquals("Should be blue turn after green finds a red agent","Red",test.getCurrentPlayer());
 					}
 				}
 			}
@@ -346,38 +362,7 @@ public class testing
 						testLocation[i][j].setReveal(0);
 						test.makeMove(i, j);
 						i=testLocation.length;
-						assertEquals("Should be red turn after green finds an assassin","Red",test.getCurrentPlayer());
-					}
-				}
-			}
-		}
-		for(int i = 0; i < testLocation.length; i++)
-		{
-			for(int j = 0; j < testLocation[0].length; j++)
-			{
-				if(testLocation[i][j].getPersonType() == "Assassin")
-				{
-					if(testLocation[i][j].getReveal()==1)
-					{
-						testLocation[i][j].setReveal(0);
-						test.makeMove(i, j);
-						i=testLocation.length;
-						assertEquals("Should be Blue turn after red finds an assassin","Green",test.getCurrentPlayer());
-					}
-				}
-			}
-		}
-		for(int i = 0; i < testLocation.length; i++)
-		{
-			for(int j = 0; j < testLocation[0].length; j++)
-			{
-				if(testLocation[i][j].getPersonType() == "Assassin")
-				{
-					if(testLocation[i][j].getReveal()==1)
-					{
-						test.makeMove(i, j);
-						i=testLocation.length;
-						assertEquals("Should be reds turn after green finds an assassin","Green",test.getCurrentPlayer());
+						assertEquals("Should be green wins after  blue finds an assassin","Green",test.getCurrentPlayer());
 					}
 				}
 			}
