@@ -36,9 +36,11 @@ public class MainFrame extends JFrame{
 		JMenuBar menuBar = new JMenuBar();
         JMenu menu1 = new JMenu("FILE");
         menuBar.add(menu1);
-        JMenuItem startItem = new JMenuItem("Start");
+        JMenuItem startItem = new JMenuItem("Start Two-Player Game");
+        JMenuItem startItem2 = new JMenuItem("Start Three-Player Game");
         JMenuItem quitItem = new JMenuItem("Quit");
         menu1.add(startItem);
+        menu1.add(startItem2);
         menu1.add(quitItem);
         Board board=new Board(5,5);
         board.setCodeNames("src/GameWords.txt");
@@ -53,20 +55,6 @@ public class MainFrame extends JFrame{
         	}
         }
         //System.out.println(board.getGameCodeNames());
-        startItem.addActionListener(new ActionListener() {
-        	
-        	@Override
-        	public void actionPerformed(ActionEvent event) {
-        		
-        	}
-        });
-        quitItem.addActionListener(new ActionListener() {
-        	
-    		@Override
-    		public void actionPerformed(ActionEvent event) {
-    			System.exit(0);
-    		}
-        });
 		
         mainMenuPanel = new MainMenuPanel(mainPanel, cl,board);
         bonusPanel = new BonusPanel(mainPanel, cl,board);
@@ -81,6 +69,29 @@ public class MainFrame extends JFrame{
     	mainPanel.add(gamePanel, "4");
     	mainPanel.add(spyMasterPanelThreePlayer, "5");
     	mainPanel.add(gamePanelThreePlayer, "6");
+    	
+    	startItem.addActionListener(new ActionListener() {
+    		
+    		@Override
+    		public void actionPerformed(ActionEvent event) {
+    			cl.show(mainPanel, "3");
+    		}
+    	});
+    	startItem2.addActionListener(new ActionListener() {
+    		
+    		@Override
+    		public void actionPerformed(ActionEvent event) {
+    			cl.show(mainPanel, "5");
+    		}
+    	});
+    	quitItem.addActionListener(new ActionListener() {
+    		
+    		@Override
+    		public void actionPerformed(ActionEvent event) {
+    			System.exit(0);
+    		}
+    	});
+    	
     	cl.show(mainPanel, "1");
 		//Add Swing components
         c.add(menuBar, BorderLayout.NORTH);
