@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel{
 	
-	
+	private boolean shown = false;
 	private String[] options = {"Yes", "No"};
 	
 	public GamePanel(JPanel mainPanel, CardLayout cl, Board board, ArrayList<String> answers) {
@@ -58,7 +58,9 @@ public class GamePanel extends JPanel{
 					
 					b.setText(ST);
 					board.setCount(Integer.toString(board.getCount()-1));
-					countLabel.setText(Integer.toString(board.getCount()));
+					if(shown == true) {
+						countLabel.setText(Integer.toString(board.getCount()));
+					}
 					board.getBoard()[row][col].setReveal(1);
 					b.setEnabled(false);
 					System.out.println(board.getBoard()[row][col].getPersonType());
@@ -148,6 +150,7 @@ public class GamePanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				shown = true;
 				clueLabel.setText(board.getClue());
 				countLabel.setText(Integer.toString(board.getCount()));
 			}
