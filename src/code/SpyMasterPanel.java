@@ -34,16 +34,20 @@ public class SpyMasterPanel extends JPanel{
 		this.board=board;
 		setLayout(new GridBagLayout());
 		setBackground(Color.ORANGE);
+		
 		JLabel hintLabel = new JLabel("Hint: ");
 		hintLabel.setFont(new Font("Serif", Font.BOLD, 40));
 		hintField = new JTextField("Type in your hint here SpyMaster", 20);
 		hintField.setMinimumSize(new Dimension(550, 40));
 		hintField.setFont(new Font ("Arial", Font.BOLD, 35));
+		
 		JLabel countLabel = new JLabel("Count: ");
 		countLabel.setFont(new Font("Serif", Font.BOLD, 40));
 		countField = new JTextField("Count", 20);
 		countField.setFont(new Font ("Arial", Font.BOLD, 35));
 		countField.setMinimumSize(new Dimension(120, 40));
+		
+		
 		
 		JButton button = new JButton("Submit");
 		button.setPreferredSize(new Dimension(300, 50));

@@ -82,7 +82,7 @@ public class GamePanelThreePlayer extends JPanel{
 						}
 					}
 					else {
-						if(board2.getCurrentPlayer().equals("RedAgent")) {							
+						if(board2.getCurrentPlayer().equals("RedAgent")) {			
 							board2.setCurrentPlayer("BlueAgent");
 							setBackground(Color.BLUE);
 						}
